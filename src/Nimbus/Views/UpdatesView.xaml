@@ -1,0 +1,126 @@
+<UserControl x:Class="Nimbus.Views.UpdatesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="0,4,8,28">
+            <TextBlock Text="{DynamicResource S.Nav.Updates}" Style="{StaticResource PageTitle}" />
+            <TextBlock Text="{DynamicResource S.Upd.Subtitle}" Style="{StaticResource Body}" Margin="0,4,0,20" />
+
+            <!-- Windows Update mode -->
+            <DockPanel Margin="0,0,0,12">
+                <Border DockPanel.Dock="Right" Style="{StaticResource Badge}" Background="{StaticResource AccentSubtleBrush}" Padding="10,4">
+                    <TextBlock Text="{Binding CurrentModeText}" FontSize="12" Foreground="{StaticResource AccentHoverBrush}" />
+                </Border>
+                <TextBlock Text="{DynamicResource S.Upd.WindowsTitle}" Style="{StaticResource H2}" VerticalAlignment="Center" />
+            </DockPanel>
+
+            <UniformGrid Columns="3" Margin="-6,0">
+                <RadioButton Style="{StaticResource SelectCard}" GroupName="mode" Margin="6"
+                             IsChecked="{Binding SelectedMode, Converter={StaticResource Eq}, ConverterParameter=Recommended}">
+                    <StackPanel>
+                        <DockPanel>
+                            <Border DockPanel.Dock="Right" Style="{StaticResource Badge}" Background="{StaticResource SuccessSubtleBrush}">
+                                <TextBlock Text="{DynamicResource S.Upd.Badge.Recommended}" FontSize="11" Foreground="{StaticResource SuccessBrush}" />
+                            </Border>
+                            <TextBlock Style="{StaticResource Icon}" Text="&#xEA18;" FontSize="22" HorizontalAlignment="Left" Foreground="{StaticResource SuccessBrush}" />
+                        </DockPanel>
+                        <TextBlock Text="{DynamicResource S.Upd.Mode.Recommended}" Style="{StaticResource H3}" Margin="0,14,0,6" />
+                        <TextBlock Text="{DynamicResource S.Upd.Mode.Recommended.Desc}" Style="{StaticResource Body}" FontSize="12.5" />
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton Style="{StaticResource SelectCard}" GroupName="mode" Margin="6"
+                             IsChecked="{Binding SelectedMode, Converter={StaticResource Eq}, ConverterParameter=Default}">
+                    <StackPanel>
+                        <TextBlock Style="{StaticResource Icon}" Text="&#xE7F4;" FontSize="22" HorizontalAlignment="Left" Foreground="{StaticResource TextSecondaryBrush}" />
+                        <TextBlock Text="{DynamicResource S.Upd.Mode.Default}" Style="{StaticResource H3}" Margin="0,14,0,6" />
+                        <TextBlock Text="{DynamicResource S.Upd.Mode.Default.Desc}" Style="{StaticResource Body}" FontSize="12.5" />
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton Style="{StaticResource SelectCard}" GroupName="mode" Margin="6"
+                             IsChecked="{Binding SelectedMode, Converter={StaticResource Eq}, ConverterParameter=Disabled}">
+                    <StackPanel>
+                        <DockPanel>
+                            <Border DockPanel.Dock="Right" Style="{StaticResource Badge}" Background="{StaticResource DangerSubtleBrush}">
+                                <TextBlock Text="{DynamicResource S.Risk.High}" FontSize="11" Foreground="{StaticResource DangerBrush}" />
+                            </Border>
+                            <TextBlock Style="{StaticResource Icon}" Text="&#xE7BA;" FontSize="22" HorizontalAlignment="Left" Foreground="{StaticResource DangerBrush}" />
+                        </DockPanel>
+                        <TextBlock Text="{DynamicResource S.Upd.Mode.Disabled}" Style="{StaticResource H3}" Margin="0,14,0,6" />
+                        <TextBlock Text="{DynamicResource S.Upd.Mode.Disabled.Desc}" Style="{StaticResource Body}" FontSize="12.5" />
+                    </StackPanel>
+                </RadioButton>
+            </UniformGrid>
+
+            <Border Margin="0,12,0,0" Padding="14,11" CornerRadius="10" Background="{StaticResource WarningSubtleBrush}"
+                    Visibility="{Binding IsHomeEdition, Converter={StaticResource BoolVis}}">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource Icon}" Text="&#xE946;" FontSize="14" Foreground="{StaticResource WarningBrush}" VerticalAlignment="Top" />
+                    <TextBlock Text="{DynamicResource S.Upd.HomeWarning}" Margin="10,0,0,0" FontSize="12.5" TextWrapping="Wrap"
+                               Foreground="{StaticResource WarningBrush}" MaxWidth="800" />
+                </StackPanel>
+            </Border>
+
+            <Grid Margin="0,14,0,0">
+                <TextBlock Text="{DynamicResource S.Upd.RestartNote}" Style="{StaticResource Caption}" VerticalAlignment="Center" Margin="0,0,260,0" />
+                <Button Style="{StaticResource AccentButton}" HorizontalAlignment="Right" MinWidth="200"
+                        Content="{Binding ApplyButtonText}" Command="{Binding ApplyModeCommand}"
+                        Visibility="{Binding SelectedMode, Converter={StaticResource EqVis}, ConverterParameter=!Disabled}" />
+                <Button Style="{StaticResource DangerButton}" HorizontalAlignment="Right" MinWidth="200"
+                        Content="{Binding ApplyButtonText}" Command="{Binding ApplyModeCommand}"
+                        Visibility="{Binding SelectedMode, Converter={StaticResource EqVis}, ConverterParameter=Disabled}" />
+            </Grid>
+
+            <!-- Fix Windows Update -->
+            <Border Style="{StaticResource Card}" Margin="0,22,0,0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Border Width="40" Height="40" CornerRadius="10" Background="{StaticResource AccentSubtleBrush}" VerticalAlignment="Top">
+                        <TextBlock Style="{StaticResource Icon}" Text="&#xE90F;" FontSize="18" Foreground="{StaticResource AccentBrush}" />
+                    </Border>
+                    <StackPanel Grid.Column="1" Margin="16,0,16,0">
+                        <TextBlock Text="{DynamicResource S.Upd.FixTitle}" Style="{StaticResource H3}" />
+                        <TextBlock Text="{DynamicResource S.Upd.FixDesc}" Style="{StaticResource Body}" FontSize="12.5" Margin="0,4,0,10" />
+                        <CheckBox IsChecked="{Binding AggressiveFix}">
+                            <TextBlock Text="{DynamicResource S.Upd.FixAggressive}" FontSize="12.5" Foreground="{StaticResource TextSecondaryBrush}" TextWrapping="Wrap" />
+                        </CheckBox>
+                    </StackPanel>
+                    <Button Grid.Column="2" Content="{DynamicResource S.Upd.FixRun}" Command="{Binding RunFixCommand}" VerticalAlignment="Top" />
+                </Grid>
+            </Border>
+
+            <!-- Nimbus app updates -->
+            <TextBlock Text="{DynamicResource S.AppUpd.Title}" Style="{StaticResource H2}" Margin="0,30,0,12" />
+            <Border Style="{StaticResource Card}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="pack://application:,,,/Nimbus;component/Assets/nimbus.png" Width="44" Height="44" VerticalAlignment="Top"
+                           RenderOptions.BitmapScalingMode="HighQuality" />
+                    <StackPanel Grid.Column="1" Margin="16,0,16,0" VerticalAlignment="Center">
+                        <TextBlock Style="{StaticResource H3}">
+                            <Run Text="Nimbus " /><Run Text="{Binding Shell.AppVersion, Mode=OneWay}" />
+                        </TextBlock>
+                        <TextBlock Text="{Binding Shell.AppUpdateStatusText}" Style="{StaticResource Body}" FontSize="12.5" Margin="0,4,0,0" />
+                        <Button Style="{StaticResource LinkButton}" HorizontalAlignment="Left" Margin="0,8,0,0"
+                                Content="{DynamicResource S.AppUpd.Releases}" Command="{Binding OpenReleasesCommand}" />
+                    </StackPanel>
+                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                        <Control Style="{StaticResource Spinner}" Width="16" Height="16" Margin="0,0,12,0"
+                                 Visibility="{Binding Shell.AppUpdate.IsBusy, Converter={StaticResource BoolVis}}" />
+                        <Button Content="{DynamicResource S.AppUpd.Check}" Command="{Binding CheckAppUpdateCommand}" />
+                        <Button Style="{StaticResource AccentButton}" Content="{DynamicResource S.AppUpd.UpdateNow}" Margin="10,0,0,0"
+                                Command="{Binding Shell.OpenUpdateDialogCommand}"
+                                Visibility="{Binding Shell.AppUpdate.IsUpdateAvailable, Converter={StaticResource BoolVis}}" />
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

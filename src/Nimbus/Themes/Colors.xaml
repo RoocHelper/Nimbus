@@ -1,0 +1,72 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Accent: teal -->
+    <Color x:Key="AccentColor">#2DD4BF</Color>
+    <Color x:Key="AccentHoverColor">#5EEAD4</Color>
+    <Color x:Key="AccentPressedColor">#14B8A6</Color>
+    <Color x:Key="AccentSubtleColor">#262DD4BF</Color>
+    <Color x:Key="OnAccentColor">#042F2B</Color>
+
+    <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}" />
+    <SolidColorBrush x:Key="AccentHoverBrush" Color="{StaticResource AccentHoverColor}" />
+    <SolidColorBrush x:Key="AccentPressedBrush" Color="{StaticResource AccentPressedColor}" />
+    <SolidColorBrush x:Key="AccentSubtleBrush" Color="{StaticResource AccentSubtleColor}" />
+    <SolidColorBrush x:Key="OnAccentBrush" Color="{StaticResource OnAccentColor}" />
+
+    <!-- Text -->
+    <SolidColorBrush x:Key="TextPrimaryBrush" Color="#E8ECF3" />
+    <SolidColorBrush x:Key="TextSecondaryBrush" Color="#A3ACBD" />
+    <SolidColorBrush x:Key="TextMutedBrush" Color="#717A8C" />
+
+    <!-- Surfaces (translucent so the Mica/Acrylic backdrop shows through) -->
+    <SolidColorBrush x:Key="WindowFillBrush" Color="#8C080B10" />
+    <SolidColorBrush x:Key="SidebarFillBrush" Color="#33000000" />
+    <SolidColorBrush x:Key="CardBrush" Color="#0FFFFFFF" />
+    <SolidColorBrush x:Key="CardHoverBrush" Color="#18FFFFFF" />
+    <SolidColorBrush x:Key="CardBorderBrush" Color="#17FFFFFF" />
+    <SolidColorBrush x:Key="DividerBrush" Color="#12FFFFFF" />
+    <SolidColorBrush x:Key="ControlFillBrush" Color="#14FFFFFF" />
+    <SolidColorBrush x:Key="ControlHoverBrush" Color="#22FFFFFF" />
+    <SolidColorBrush x:Key="ControlBorderBrush" Color="#2BFFFFFF" />
+    <SolidColorBrush x:Key="OverlayBrush" Color="#B3050709" />
+    <SolidColorBrush x:Key="DialogBrush" Color="#F2141A23" />
+
+    <!-- Status -->
+    <SolidColorBrush x:Key="SuccessBrush" Color="#3DDC97" />
+    <SolidColorBrush x:Key="SuccessSubtleBrush" Color="#223DDC97" />
+    <SolidColorBrush x:Key="WarningBrush" Color="#F5B942" />
+    <SolidColorBrush x:Key="WarningSubtleBrush" Color="#22F5B942" />
+    <SolidColorBrush x:Key="DangerBrush" Color="#FF6B6B" />
+    <SolidColorBrush x:Key="DangerSubtleBrush" Color="#22FF6B6B" />
+    <SolidColorBrush x:Key="DangerHoverBrush" Color="#FF8A8A" />
+
+    <!-- Typography -->
+    <FontFamily x:Key="UiFont">Segoe UI Variable Text, Segoe UI</FontFamily>
+    <FontFamily x:Key="DisplayFont">Segoe UI Variable Display, Segoe UI</FontFamily>
+    <FontFamily x:Key="IconFont">Segoe Fluent Icons, Segoe MDL2 Assets</FontFamily>
+
+    <CornerRadius x:Key="CardRadius">12</CornerRadius>
+    <CornerRadius x:Key="ControlRadius">8</CornerRadius>
+
+    <!-- Flags for the language switch -->
+    <DrawingImage x:Key="FlagID">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <GeometryDrawing Brush="#E0282E" Geometry="M0,0 H18 V6 H0 Z" />
+                <GeometryDrawing Brush="#FFFFFF" Geometry="M0,6 H18 V12 H0 Z" />
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+    <DrawingImage x:Key="FlagEN">
+        <DrawingImage.Drawing>
+            <DrawingGroup>
+                <GeometryDrawing Brush="#FFFFFF" Geometry="M0,0 H18 V12 H0 Z" />
+                <GeometryDrawing Brush="#C8102E" Geometry="M0,0 H18 V0.92 H0 Z M0,1.85 H18 V2.77 H0 Z M0,3.69 H18 V4.62 H0 Z M0,5.54 H18 V6.46 H0 Z M0,7.38 H18 V8.31 H0 Z M0,9.23 H18 V10.15 H0 Z M0,11.08 H18 V12 H0 Z" />
+                <GeometryDrawing Brush="#1F3A8A" Geometry="M0,0 H7.6 V6.46 H0 Z" />
+            </DrawingGroup>
+        </DrawingImage.Drawing>
+    </DrawingImage>
+
+</ResourceDictionary>

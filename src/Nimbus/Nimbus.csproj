@@ -1,0 +1,41 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>Nimbus</AssemblyName>
+    <RootNamespace>Nimbus</RootNamespace>
+    <StartupObject>Nimbus.Program</StartupObject>
+    <ApplicationIcon>Assets\nimbus.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <Product>Nimbus</Product>
+    <Description>Nimbus - Windows tweaks and update manager</Description>
+    <Copyright>Copyright (c) 2026 Nimbus contributors</Copyright>
+    <!-- Version is overridden by the release workflow: dotnet publish -p:Version=x.y.z -->
+    <Version>1.0.0</Version>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+  </PropertyGroup>
+
+  <!-- App.xaml is a Page (not ApplicationDefinition) so Program.Main can run Velopack first. -->
+  <ItemGroup>
+    <ApplicationDefinition Remove="App.xaml" />
+    <Page Include="App.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Velopack" Version="0.0.1298" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\nimbus.png" />
+    <Resource Include="Assets\nimbus.ico" />
+    <None Update="Data\**\*" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="Scripts\**\*" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,139 @@
+<UserControl x:Class="Nimbus.Views.SettingsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <UserControl.Resources>
+        <Style x:Key="SettingRow" TargetType="Border" BasedOn="{StaticResource Card}">
+            <Setter Property="Margin" Value="0,0,0,8" />
+            <Setter Property="Padding" Value="18,14" />
+        </Style>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+        <StackPanel Margin="0,4,8,28" MaxWidth="900" HorizontalAlignment="Stretch">
+            <TextBlock Text="{DynamicResource S.Nav.Settings}" Style="{StaticResource PageTitle}" Margin="0,0,0,20" />
+
+            <TextBlock Text="{DynamicResource S.Set.Appearance}" Style="{StaticResource Caption}" Margin="2,0,0,8" />
+
+            <!-- Language -->
+            <Border Style="{StaticResource SettingRow}">
+                <DockPanel>
+                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center">
+                        <RadioButton Style="{StaticResource Chip}" GroupName="setLang"
+                                     IsChecked="{Binding Language, Converter={StaticResource Eq}, ConverterParameter=id}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{StaticResource FlagID}" Width="18" Height="12" />
+                                <TextBlock Text="Bahasa Indonesia" Margin="8,0,0,0" />
+                            </StackPanel>
+                        </RadioButton>
+                        <RadioButton Style="{StaticResource Chip}" GroupName="setLang" Margin="0"
+                                     IsChecked="{Binding Language, Converter={StaticResource Eq}, ConverterParameter=en}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{StaticResource FlagEN}" Width="18" Height="12" />
+                                <TextBlock Text="English" Margin="8,0,0,0" />
+                            </StackPanel>
+                        </RadioButton>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource Icon}" Text="&#xE774;" FontSize="18" Foreground="{StaticResource AccentBrush}" VerticalAlignment="Top" Margin="0,2,0,0" />
+                        <StackPanel Margin="14,0,0,0">
+                            <TextBlock Text="{DynamicResource S.Set.Language}" Style="{StaticResource H3}" />
+                            <TextBlock Text="{DynamicResource S.Set.LanguageDesc}" Style="{StaticResource Caption}" Margin="0,2,0,0" />
+                        </StackPanel>
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
+            <!-- Backdrop -->
+            <Border Style="{StaticResource SettingRow}">
+                <StackPanel>
+                    <DockPanel>
+                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal" VerticalAlignment="Center"
+                                    IsEnabled="{Binding BackdropSupported}">
+                            <RadioButton Style="{StaticResource Chip}" GroupName="backdrop" Content="{DynamicResource S.Set.Acrylic}"
+                                         IsChecked="{Binding Backdrop, Converter={StaticResource Eq}, ConverterParameter=Acrylic}" />
+                            <RadioButton Style="{StaticResource Chip}" GroupName="backdrop" Content="{DynamicResource S.Set.Mica}"
+                                         IsChecked="{Binding Backdrop, Converter={StaticResource Eq}, ConverterParameter=Mica}" />
+                            <RadioButton Style="{StaticResource Chip}" GroupName="backdrop" Content="{DynamicResource S.Set.Solid}" Margin="0"
+                                         IsChecked="{Binding Backdrop, Converter={StaticResource Eq}, ConverterParameter=Solid}" />
+                        </StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource Icon}" Text="&#xE790;" FontSize="18" Foreground="{StaticResource AccentBrush}" VerticalAlignment="Top" Margin="0,2,0,0" />
+                            <StackPanel Margin="14,0,0,0">
+                                <TextBlock Text="{DynamicResource S.Set.Backdrop}" Style="{StaticResource H3}" />
+                                <TextBlock Text="{DynamicResource S.Set.BackdropDesc}" Style="{StaticResource Caption}" Margin="0,2,0,0" />
+                            </StackPanel>
+                        </StackPanel>
+                    </DockPanel>
+                    <TextBlock Text="{DynamicResource S.Set.BackdropUnsupported}" Style="{StaticResource Caption}" Foreground="{StaticResource WarningBrush}"
+                               Margin="32,10,0,0" Visibility="{Binding BackdropSupported, Converter={StaticResource BoolVis}, ConverterParameter=Invert}" />
+                </StackPanel>
+            </Border>
+
+            <TextBlock Text="{DynamicResource S.Set.Behavior}" Style="{StaticResource Caption}" Margin="2,18,0,8" />
+
+            <Border Style="{StaticResource SettingRow}">
+                <DockPanel>
+                    <CheckBox DockPanel.Dock="Right" Style="{StaticResource ToggleSwitch}" IsChecked="{Binding AutoRestorePoint}" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource Icon}" Text="&#xE777;" FontSize="18" Foreground="{StaticResource AccentBrush}" VerticalAlignment="Top" Margin="0,2,0,0" />
+                        <StackPanel Margin="14,0,16,0">
+                            <TextBlock Text="{DynamicResource S.Set.AutoRestore}" Style="{StaticResource H3}" />
+                            <TextBlock Text="{DynamicResource S.Set.AutoRestoreDesc}" Style="{StaticResource Caption}" Margin="0,2,0,0" />
+                        </StackPanel>
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
+            <Border Style="{StaticResource SettingRow}">
+                <DockPanel>
+                    <CheckBox DockPanel.Dock="Right" Style="{StaticResource ToggleSwitch}" IsChecked="{Binding CheckUpdatesOnStartup}" />
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Style="{StaticResource Icon}" Text="&#xE896;" FontSize="18" Foreground="{StaticResource AccentBrush}" VerticalAlignment="Top" Margin="0,2,0,0" />
+                        <StackPanel Margin="14,0,16,0">
+                            <TextBlock Text="{DynamicResource S.Set.CheckUpdates}" Style="{StaticResource H3}" />
+                            <TextBlock Text="{DynamicResource S.Set.CheckUpdatesDesc}" Style="{StaticResource Caption}" Margin="0,2,0,0" />
+                        </StackPanel>
+                    </StackPanel>
+                </DockPanel>
+            </Border>
+
+            <TextBlock Text="{DynamicResource S.Set.About}" Style="{StaticResource Caption}" Margin="2,18,0,8" />
+
+            <Border Style="{StaticResource SettingRow}" Padding="18">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="pack://application:,,,/Nimbus;component/Assets/nimbus.png" Width="52" Height="52" VerticalAlignment="Top"
+                           RenderOptions.BitmapScalingMode="HighQuality" />
+                    <StackPanel Grid.Column="1" Margin="16,0,0,0">
+                        <TextBlock Text="{Binding VersionText}" Style="{StaticResource H3}" FontSize="15" />
+                        <TextBlock Text="{DynamicResource S.Set.AboutDesc}" Style="{StaticResource Body}" FontSize="12.5" Margin="0,4,0,0" />
+                        <TextBlock Text="{DynamicResource S.Set.Credits}" Style="{StaticResource Caption}" Margin="0,10,0,0" />
+                        <WrapPanel Margin="0,12,0,0">
+                            <Button Style="{StaticResource GhostButton}" Command="{Binding OpenGitHubCommand}" Margin="-10,0,4,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource Icon}" Text="&#xE8A7;" FontSize="12" Foreground="{StaticResource AccentBrush}" />
+                                    <TextBlock Text="{Binding RepoText}" Margin="8,0,0,0" Foreground="{StaticResource AccentBrush}" />
+                                </StackPanel>
+                            </Button>
+                            <Button Style="{StaticResource GhostButton}" Command="{Binding OpenWinUtilCommand}" Margin="0,0,4,0">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource Icon}" Text="&#xE8A7;" FontSize="12" Foreground="{StaticResource AccentBrush}" />
+                                    <TextBlock Text="ChrisTitusTech/winutil" Margin="8,0,0,0" Foreground="{StaticResource AccentBrush}" />
+                                </StackPanel>
+                            </Button>
+                            <Button Style="{StaticResource GhostButton}" Command="{Binding OpenLogFolderCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Style="{StaticResource Icon}" Text="&#xE838;" FontSize="12" Foreground="{StaticResource AccentBrush}" />
+                                    <TextBlock Text="{DynamicResource S.Hist.OpenLogs}" Margin="8,0,0,0" Foreground="{StaticResource AccentBrush}" />
+                                </StackPanel>
+                            </Button>
+                        </WrapPanel>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

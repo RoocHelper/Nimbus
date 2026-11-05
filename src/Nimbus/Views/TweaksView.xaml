@@ -1,0 +1,343 @@
+<UserControl x:Class="Nimbus.Views.TweaksView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Name="Root">
+    <UserControl.Resources>
+        <Style x:Key="RiskBadge" TargetType="Border" BasedOn="{StaticResource Badge}">
+            <Setter Property="Background" Value="{StaticResource SuccessSubtleBrush}" />
+            <Setter Property="TextElement.Foreground" Value="{StaticResource SuccessBrush}" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Risk}" Value="Caution">
+                    <Setter Property="Background" Value="{StaticResource WarningSubtleBrush}" />
+                    <Setter Property="TextElement.Foreground" Value="{StaticResource WarningBrush}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Risk}" Value="High">
+                    <Setter Property="Background" Value="{StaticResource DangerSubtleBrush}" />
+                    <Setter Property="TextElement.Foreground" Value="{StaticResource DangerBrush}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <ItemsPanelTemplate x:Key="TwoColumns">
+            <UniformGrid Columns="2" VerticalAlignment="Top" />
+        </ItemsPanelTemplate>
+        <ItemsPanelTemplate x:Key="ThreeColumns">
+            <UniformGrid Columns="3" VerticalAlignment="Top" />
+        </ItemsPanelTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Margin="0,4,8,14">
+            <TextBlock Text="{DynamicResource S.Nav.Tweaks}" Style="{StaticResource PageTitle}" />
+            <TextBlock Text="{DynamicResource S.Tweaks.Subtitle}" Style="{StaticResource Body}" Margin="0,4,0,0" />
+        </StackPanel>
+
+        <!-- Category chips + search -->
+        <DockPanel Grid.Row="1" Margin="0,0,8,14" LastChildFill="True">
+            <TextBox DockPanel.Dock="Right" Width="250" Style="{StaticResource SearchBox}" Tag="{DynamicResource S.Tweaks.Search}"
+                     Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged, Delay=150}" VerticalAlignment="Center" />
+            <WrapPanel VerticalAlignment="Center">
+                <RadioButton Style="{StaticResource Chip}" GroupName="cat" Content="{DynamicResource S.Cat.Essential}"
+                             IsChecked="{Binding SelectedCategory, Converter={StaticResource Eq}, ConverterParameter=essential}" />
+                <RadioButton Style="{StaticResource Chip}" GroupName="cat" Content="{DynamicResource S.Cat.Advanced}"
+                             IsChecked="{Binding SelectedCategory, Converter={StaticResource Eq}, ConverterParameter=advanced}" />
+                <RadioButton Style="{StaticResource Chip}" GroupName="cat" Content="{DynamicResource S.Cat.Preferences}"
+                             IsChecked="{Binding SelectedCategory, Converter={StaticResource Eq}, ConverterParameter=prefs}" />
+                <RadioButton Style="{StaticResource Chip}" GroupName="cat" Content="{DynamicResource S.Cat.Dns}"
+                             IsChecked="{Binding SelectedCategory, Converter={StaticResource Eq}, ConverterParameter=dns}" />
+                <RadioButton Style="{StaticResource Chip}" GroupName="cat" Content="{DynamicResource S.Cat.Performance}"
+                             IsChecked="{Binding SelectedCategory, Converter={StaticResource Eq}, ConverterParameter=perf}" />
+                <RadioButton Style="{StaticResource Chip}" GroupName="cat" Content="{DynamicResource S.Cat.Appx}"
+                             IsChecked="{Binding SelectedCategory, Converter={StaticResource Eq}, ConverterParameter=appx}" />
+            </WrapPanel>
+        </DockPanel>
+
+        <!-- ===================== Content ===================== -->
+        <Grid Grid.Row="2">
+
+            <!-- Essential / Advanced -->
+            <DockPanel Visibility="{Binding SelectedCategory, Converter={StaticResource EqVis}, ConverterParameter='essential,advanced'}">
+                <StackPanel DockPanel.Dock="Top" Margin="0,0,8,10">
+                    <WrapPanel>
+                        <TextBlock Text="{DynamicResource S.Tweaks.QuickSelect}" Style="{StaticResource Caption}" VerticalAlignment="Center" Margin="0,0,10,0" />
+                        <Button Style="{StaticResource ChipButton}" Content="{DynamicResource S.Preset.Minimal}" Command="{Binding SelectPresetCommand}" CommandParameter="Minimal" />
+                        <Button Style="{StaticResource ChipButton}" Content="{DynamicResource S.Preset.Standard}" Command="{Binding SelectPresetCommand}" CommandParameter="Standard" />
+                        <Button Style="{StaticResource ChipButton}" Content="{DynamicResource S.Preset.Advanced}" Command="{Binding SelectPresetCommand}" CommandParameter="Advanced" />
+                        <Button Style="{StaticResource ChipButton}" Content="{DynamicResource S.Preset.SelectApplied}" Command="{Binding SelectAppliedCommand}" />
+                        <Button Style="{StaticResource ChipButton}" Content="{DynamicResource S.Preset.Clear}" Command="{Binding ClearSelectionCommand}" />
+                    </WrapPanel>
+                    <Border Margin="0,12,0,0" Padding="12,9" CornerRadius="10" Background="{StaticResource WarningSubtleBrush}"
+                            Visibility="{Binding IsAdvancedCategory, Converter={StaticResource BoolVis}}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource Icon}" Text="&#xE7BA;" FontSize="14" Foreground="{StaticResource WarningBrush}" />
+                            <TextBlock Text="{DynamicResource S.Tweaks.AdvancedWarning}" Margin="10,0,0,0" FontSize="12.5" TextWrapping="Wrap"
+                                       Foreground="{StaticResource WarningBrush}" VerticalAlignment="Center" />
+                        </StackPanel>
+                    </Border>
+                </StackPanel>
+
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <ItemsControl ItemsSource="{Binding VisibleTweaks}" ItemsPanel="{StaticResource TwoColumns}" Margin="-5,0,3,12">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Style="{StaticResource HoverCard}" Margin="5" Padding="14,12">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <CheckBox IsChecked="{Binding IsSelected}" VerticalContentAlignment="Top">
+                                            <StackPanel>
+                                                <TextBlock Text="{Binding Name}" Style="{StaticResource H3}" FontSize="13.5" ToolTip="{Binding Name}" />
+                                                <WrapPanel Margin="0,5,0,0">
+                                                    <Border Style="{StaticResource RiskBadge}">
+                                                        <TextBlock Text="{Binding RiskText}" FontSize="11" />
+                                                    </Border>
+                                                    <Border Style="{StaticResource Badge}" Margin="6,0,0,0" Background="{StaticResource AccentSubtleBrush}"
+                                                            Visibility="{Binding IsAppliedTrue, Converter={StaticResource BoolVis}}">
+                                                        <StackPanel Orientation="Horizontal">
+                                                            <TextBlock Style="{StaticResource Icon}" Text="&#xE73E;" FontSize="10" Foreground="{StaticResource AccentBrush}" />
+                                                            <TextBlock Text="{DynamicResource S.Tweaks.Active}" FontSize="11" Margin="4,0,0,0" Foreground="{StaticResource AccentBrush}" />
+                                                        </StackPanel>
+                                                    </Border>
+                                                </WrapPanel>
+                                                <TextBlock Text="{Binding Description}" Style="{StaticResource Body}" FontSize="12.5" Margin="0,6,0,0"
+                                                           MaxHeight="38" TextTrimming="CharacterEllipsis" ToolTip="{Binding Description}" />
+                                            </StackPanel>
+                                        </CheckBox>
+                                        <Button Grid.Column="1" Style="{StaticResource GhostButton}" Padding="6" Margin="6,-4,-6,0"
+                                                VerticalAlignment="Top" ToolTip="{DynamicResource S.Tweaks.LearnMore}"
+                                                Command="{Binding DataContext.OpenLinkCommand, ElementName=Root}" CommandParameter="{Binding Link}"
+                                                Visibility="{Binding Link, Converter={StaticResource NullVis}}">
+                                            <TextBlock Style="{StaticResource Icon}" Text="&#xE946;" FontSize="13" Foreground="{StaticResource TextMutedBrush}" />
+                                        </Button>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </DockPanel>
+
+            <!-- Preferences -->
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                          Visibility="{Binding SelectedCategory, Converter={StaticResource EqVis}, ConverterParameter=prefs}">
+                <StackPanel Margin="0,0,8,12">
+                    <TextBlock Text="{DynamicResource S.Tweaks.PrefsHint}" Style="{StaticResource Caption}" Margin="0,0,0,10" />
+
+                    <Border Style="{StaticResource Card}" Margin="0,0,0,10" Padding="16,14" DataContext="{Binding Mpo}"
+                            Visibility="{Binding DataContext.IsMpoVisible, ElementName=Root, Converter={StaticResource BoolVis}}">
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Name}" Style="{StaticResource H3}" FontSize="13.5" />
+                                <Control Style="{StaticResource Spinner}" Width="14" Height="14" Margin="10,0,0,0"
+                                         Visibility="{Binding IsWorking, Converter={StaticResource BoolVis}}" />
+                            </StackPanel>
+                            <TextBlock Text="{Binding Description}" Style="{StaticResource Body}" FontSize="12.5" Margin="0,4,0,10" />
+                            <ItemsControl ItemsSource="{Binding Options}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel />
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <RadioButton Style="{StaticResource Chip}" GroupName="mpo" Content="{Binding Label}"
+                                                     IsChecked="{Binding IsSelected}"
+                                                     Command="{Binding DataContext.SetComboCommand, ElementName=Root}" CommandParameter="{Binding}" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </StackPanel>
+                    </Border>
+
+                    <ItemsControl ItemsSource="{Binding VisiblePreferences}" ItemsPanel="{StaticResource TwoColumns}" Margin="-5,0">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Style="{StaticResource HoverCard}" Margin="5" Padding="16,13">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackPanel Margin="0,0,14,0">
+                                            <TextBlock Text="{Binding Name}" Style="{StaticResource H3}" FontSize="13.5" ToolTip="{Binding Name}" />
+                                            <TextBlock Text="{Binding Description}" Style="{StaticResource Body}" FontSize="12.5" Margin="0,4,0,0"
+                                                       MaxHeight="38" TextTrimming="CharacterEllipsis" ToolTip="{Binding Description}" />
+                                        </StackPanel>
+                                        <Grid Grid.Column="1" VerticalAlignment="Center">
+                                            <CheckBox Style="{StaticResource ToggleSwitch}" IsChecked="{Binding IsOn}"
+                                                      IsEnabled="{Binding IsWorking, Converter={StaticResource Not}}" />
+                                            <Control Style="{StaticResource Spinner}" Width="16" Height="16" HorizontalAlignment="Center"
+                                                     Visibility="{Binding IsWorking, Converter={StaticResource BoolVis}}" />
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- DNS -->
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                          Visibility="{Binding SelectedCategory, Converter={StaticResource EqVis}, ConverterParameter=dns}">
+                <StackPanel Margin="0,0,8,12">
+                    <TextBlock Text="{DynamicResource S.Dns.Hint}" Style="{StaticResource Caption}" Margin="0,0,0,10" />
+                    <ItemsControl ItemsSource="{Binding DnsOptions}" ItemsPanel="{StaticResource ThreeColumns}" Margin="-5,0">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <RadioButton Style="{StaticResource SelectCard}" GroupName="dns" Margin="5" Padding="14,12"
+                                             IsChecked="{Binding IsSelected}"
+                                             Command="{Binding DataContext.SelectDnsCommand, ElementName=Root}" CommandParameter="{Binding}">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Label}" Style="{StaticResource H3}" FontSize="13.5" />
+                                        <TextBlock Text="{Binding Detail}" FontFamily="Cascadia Mono, Consolas" FontSize="11.5" Margin="0,4,0,0"
+                                                   Foreground="{StaticResource AccentBrush}" Visibility="{Binding Detail, Converter={StaticResource NullVis}}" />
+                                        <TextBlock Text="{Binding Description}" Style="{StaticResource Caption}" Margin="0,6,0,0" />
+                                    </StackPanel>
+                                </RadioButton>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                    <Button Style="{StaticResource AccentButton}" HorizontalAlignment="Right" Margin="0,14,0,0" MinWidth="150"
+                            Content="{DynamicResource S.Dns.Apply}" Command="{Binding ApplyDnsCommand}" />
+                </StackPanel>
+            </ScrollViewer>
+
+            <!-- Performance -->
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+                          Visibility="{Binding SelectedCategory, Converter={StaticResource EqVis}, ConverterParameter=perf}">
+                <UniformGrid Columns="2" Margin="-5,0,3,12" VerticalAlignment="Top">
+                    <Border Style="{StaticResource Card}" Margin="5">
+                        <StackPanel>
+                            <Border Width="38" Height="38" CornerRadius="10" Background="{StaticResource AccentSubtleBrush}" HorizontalAlignment="Left">
+                                <TextBlock Style="{StaticResource Icon}" Text="&#xE945;" FontSize="18" Foreground="{StaticResource AccentBrush}" />
+                            </Border>
+                            <TextBlock Text="{DynamicResource S.Perf.UltTitle}" Style="{StaticResource H3}" Margin="0,14,0,4" />
+                            <TextBlock Text="{DynamicResource S.Perf.UltDesc}" Style="{StaticResource Body}" />
+                            <Border Style="{StaticResource Badge}" Margin="0,10,0,0" Background="{StaticResource WarningSubtleBrush}">
+                                <TextBlock Text="{DynamicResource S.Perf.LaptopWarning}" FontSize="11" Foreground="{StaticResource WarningBrush}" />
+                            </Border>
+                            <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
+                                <Button Style="{StaticResource AccentButton}" Content="{DynamicResource S.Perf.Enable}" Command="{Binding UltimateOnCommand}" Margin="0,0,10,0" />
+                                <Button Content="{DynamicResource S.Perf.Disable}" Command="{Binding UltimateOffCommand}" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                    <Border Style="{StaticResource Card}" Margin="5">
+                        <StackPanel>
+                            <Border Width="38" Height="38" CornerRadius="10" Background="{StaticResource AccentSubtleBrush}" HorizontalAlignment="Left">
+                                <TextBlock Style="{StaticResource Icon}" Text="&#xEA18;" FontSize="18" Foreground="{StaticResource AccentBrush}" />
+                            </Border>
+                            <TextBlock Text="{DynamicResource S.Perf.OosuTitle}" Style="{StaticResource H3}" Margin="0,14,0,4" />
+                            <TextBlock Text="{DynamicResource S.Perf.OosuDesc}" Style="{StaticResource Body}" />
+                            <Button Content="{DynamicResource S.Perf.OosuRun}" Command="{Binding RunOosuCommand}" HorizontalAlignment="Left" Margin="0,16,0,0" />
+                        </StackPanel>
+                    </Border>
+                </UniformGrid>
+            </ScrollViewer>
+
+            <!-- AppX -->
+            <DockPanel Visibility="{Binding SelectedCategory, Converter={StaticResource EqVis}, ConverterParameter=appx}">
+                <DockPanel DockPanel.Dock="Top" Margin="0,0,8,10">
+                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                        <Control Style="{StaticResource Spinner}" Width="16" Height="16" Margin="0,0,10,0"
+                                 Visibility="{Binding IsAppxLoading, Converter={StaticResource BoolVis}}" />
+                        <Button Style="{StaticResource GhostButton}" Command="{Binding RefreshAppxCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Style="{StaticResource Icon}" Text="&#xE72C;" FontSize="13" />
+                                <TextBlock Text="{DynamicResource S.Appx.Refresh}" Margin="8,0,0,0" />
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                    <TextBlock Text="{DynamicResource S.Appx.Hint}" Style="{StaticResource Caption}" VerticalAlignment="Center" />
+                </DockPanel>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                    <ItemsControl ItemsSource="{Binding VisibleAppx}" ItemsPanel="{StaticResource TwoColumns}" Margin="-5,0,3,12">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Style="{StaticResource HoverCard}" Margin="5" Padding="14,12">
+                                    <CheckBox IsChecked="{Binding IsSelected}" VerticalContentAlignment="Top">
+                                        <StackPanel>
+                                            <DockPanel>
+                                                <Border DockPanel.Dock="Right" Margin="8,0,0,0">
+                                                    <Border.Style>
+                                                        <Style TargetType="Border" BasedOn="{StaticResource Badge}">
+                                                            <Setter Property="TextElement.Foreground" Value="{StaticResource TextMutedBrush}" />
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding IsInstalledTrue}" Value="True">
+                                                                    <Setter Property="Background" Value="{StaticResource SuccessSubtleBrush}" />
+                                                                    <Setter Property="TextElement.Foreground" Value="{StaticResource SuccessBrush}" />
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </Border.Style>
+                                                    <TextBlock Text="{Binding StatusText}" FontSize="11" />
+                                                </Border>
+                                                <TextBlock Text="{Binding Name}" Style="{StaticResource H3}" FontSize="13.5" />
+                                            </DockPanel>
+                                            <TextBlock Text="{Binding Category}" Style="{StaticResource Caption}" Margin="0,2,0,0" />
+                                            <TextBlock Text="{Binding Description}" Style="{StaticResource Body}" FontSize="12.5" Margin="0,6,0,0"
+                                                       MaxHeight="38" TextTrimming="CharacterEllipsis" ToolTip="{Binding Description}" />
+                                        </StackPanel>
+                                    </CheckBox>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </DockPanel>
+
+            <!-- Empty search result -->
+            <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center"
+                        Visibility="{Binding HasNoResults, Converter={StaticResource BoolVis}}">
+                <TextBlock Style="{StaticResource Icon}" Text="&#xE721;" FontSize="28" Foreground="{StaticResource TextMutedBrush}" />
+                <TextBlock Text="{DynamicResource S.Tweaks.NoResults}" Style="{StaticResource Body}" Margin="0,10,0,0" HorizontalAlignment="Center" />
+            </StackPanel>
+        </Grid>
+
+        <!-- ===================== Action bars ===================== -->
+        <Border Grid.Row="3" Margin="0,0,8,16" Padding="16,10" CornerRadius="12" Background="{StaticResource CardBrush}"
+                BorderBrush="{StaticResource CardBorderBrush}" BorderThickness="1"
+                Visibility="{Binding IsSelectableCategory, Converter={StaticResource BoolVis}}">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                    <Button Command="{Binding UndoCommand}" Margin="0,0,10,0">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource Icon}" Text="&#xE7A7;" FontSize="13" />
+                            <TextBlock Text="{DynamicResource S.Tweaks.Undo}" Margin="8,0,0,0" />
+                        </StackPanel>
+                    </Button>
+                    <Button Style="{StaticResource AccentButton}" Command="{Binding ApplyCommand}" MinWidth="130">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource Icon}" Text="&#xE768;" FontSize="13" />
+                            <TextBlock Text="{DynamicResource S.Tweaks.Apply}" Margin="8,0,0,0" />
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+                <TextBlock Text="{Binding SelectedCountText}" Style="{StaticResource Body}" VerticalAlignment="Center" />
+            </DockPanel>
+        </Border>
+
+        <Border Grid.Row="3" Margin="0,0,8,16" Padding="16,10" CornerRadius="12" Background="{StaticResource CardBrush}"
+                BorderBrush="{StaticResource CardBorderBrush}" BorderThickness="1"
+                Visibility="{Binding SelectedCategory, Converter={StaticResource EqVis}, ConverterParameter=appx}">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                    <Button Content="{DynamicResource S.Appx.Install}" Command="{Binding InstallAppxCommand}" Margin="0,0,10,0" />
+                    <Button Style="{StaticResource DangerButton}" Content="{DynamicResource S.Appx.Remove}" Command="{Binding RemoveAppxCommand}" MinWidth="130" />
+                </StackPanel>
+                <TextBlock Text="{Binding SelectedAppxText}" Style="{StaticResource Body}" VerticalAlignment="Center" />
+            </DockPanel>
+        </Border>
+    </Grid>
+</UserControl>

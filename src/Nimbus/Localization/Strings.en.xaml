@@ -1,0 +1,236 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- Navigation -->
+    <sys:String x:Key="S.Nav.Home">Home</sys:String>
+    <sys:String x:Key="S.Nav.Tweaks">Tweaks</sys:String>
+    <sys:String x:Key="S.Nav.Updates">Updates</sys:String>
+    <sys:String x:Key="S.Nav.History">History</sys:String>
+    <sys:String x:Key="S.Nav.Settings">Settings</sys:String>
+
+    <!-- Home -->
+    <sys:String x:Key="S.Home.Morning">Good morning</sys:String>
+    <sys:String x:Key="S.Home.Afternoon">Good afternoon</sys:String>
+    <sys:String x:Key="S.Home.Evening">Good evening</sys:String>
+    <sys:String x:Key="S.Home.Night">Good night</sys:String>
+    <sys:String x:Key="S.Home.Optimize">Optimize</sys:String>
+    <sys:String x:Key="S.Home.HeroTitle">Your PC is ready to optimize</sys:String>
+    <sys:String x:Key="S.Home.SafetyNote">A restore point is created before any change, and every tweak can be undone.</sys:String>
+    <sys:String x:Key="S.Home.ActiveTweaks">Active tweaks</sys:String>
+    <sys:String x:Key="S.Home.UpdateMode">Windows Update mode</sys:String>
+    <sys:String x:Key="S.Home.System">System</sys:String>
+    <sys:String x:Key="S.Home.Build">Build {0}</sys:String>
+    <sys:String x:Key="S.Home.Access">Access</sys:String>
+    <sys:String x:Key="S.Home.Admin">Administrator</sys:String>
+    <sys:String x:Key="S.Home.HomeEdition">You're on Windows Home. Update deferral (the Recommended mode) only fully applies on Pro, Enterprise, and Education editions.</sys:String>
+    <sys:String x:Key="S.Home.QuickActions">Quick actions</sys:String>
+    <sys:String x:Key="S.Home.ActTweaks">Pick tweaks yourself</sys:String>
+    <sys:String x:Key="S.Home.ActTweaksDesc">Essential, advanced, preferences, DNS, and more</sys:String>
+    <sys:String x:Key="S.Home.ActUpdates">Manage Windows Update</sys:String>
+    <sys:String x:Key="S.Home.ActUpdatesDesc">Choose an update mode and fix update errors</sys:String>
+    <sys:String x:Key="S.Home.ActRestore">Create a restore point</sys:String>
+    <sys:String x:Key="S.Home.ActRestoreDesc">A safety net before you change things</sys:String>
+
+    <!-- Presets -->
+    <sys:String x:Key="S.Preset.Minimal">Minimal</sys:String>
+    <sys:String x:Key="S.Preset.Standard">Standard</sys:String>
+    <sys:String x:Key="S.Preset.Advanced">Advanced</sys:String>
+    <sys:String x:Key="S.Preset.Clear">Clear</sys:String>
+    <sys:String x:Key="S.Preset.SelectApplied">Select active</sys:String>
+    <sys:String x:Key="S.Preset.Minimal.Desc">Minimal preset: {0} light, low-impact tweaks that suit every PC.</sys:String>
+    <sys:String x:Key="S.Preset.Standard.Desc">Standard preset: {0} recommended tweaks for most people. Better privacy and a lighter PC.</sys:String>
+    <sys:String x:Key="S.Preset.Advanced.Desc">Advanced preset: {0} tweaks for experienced users. Review the list before you continue.</sys:String>
+
+    <!-- Categories -->
+    <sys:String x:Key="S.Cat.Essential">Essential</sys:String>
+    <sys:String x:Key="S.Cat.Advanced">Advanced</sys:String>
+    <sys:String x:Key="S.Cat.Preferences">Preferences</sys:String>
+    <sys:String x:Key="S.Cat.Dns">DNS</sys:String>
+    <sys:String x:Key="S.Cat.Performance">Performance</sys:String>
+    <sys:String x:Key="S.Cat.Appx">Built-in apps</sys:String>
+
+    <!-- Tweaks -->
+    <sys:String x:Key="S.Tweaks.Subtitle">Select tweaks, then press Apply. Preferences take effect as soon as you flip them.</sys:String>
+    <sys:String x:Key="S.Tweaks.Search">Search tweaks…</sys:String>
+    <sys:String x:Key="S.Tweaks.QuickSelect">Quick select:</sys:String>
+    <sys:String x:Key="S.Tweaks.Selected">Selected: {0}</sys:String>
+    <sys:String x:Key="S.Tweaks.Apply">Apply</sys:String>
+    <sys:String x:Key="S.Tweaks.Undo">Undo</sys:String>
+    <sys:String x:Key="S.Tweaks.Active">Active</sys:String>
+    <sys:String x:Key="S.Tweaks.LearnMore">Open this tweak's documentation</sys:String>
+    <sys:String x:Key="S.Tweaks.NoResults">Nothing matches your search.</sys:String>
+    <sys:String x:Key="S.Tweaks.AdvancedWarning">Advanced tweaks can have big side effects. Read each description and keep automatic restore points on before applying.</sys:String>
+    <sys:String x:Key="S.Tweaks.PrefsHint">Changes here apply immediately. Flip a switch again to revert it.</sys:String>
+
+    <!-- Risk -->
+    <sys:String x:Key="S.Risk.Safe">Safe</sys:String>
+    <sys:String x:Key="S.Risk.Caution">Caution</sys:String>
+    <sys:String x:Key="S.Risk.High">Risky</sys:String>
+
+    <!-- DNS -->
+    <sys:String x:Key="S.Dns.Hint">Choose a DNS provider for every active network adapter (IPv4 and IPv6).</sys:String>
+    <sys:String x:Key="S.Dns.Apply">Apply DNS</sys:String>
+    <sys:String x:Key="S.Dns.DHCP">Automatic (DHCP)</sys:String>
+    <sys:String x:Key="S.Dns.Fastest">Fastest</sys:String>
+    <sys:String x:Key="S.Dns.Desc.DHCP">Go back to the DNS from your router or ISP.</sys:String>
+    <sys:String x:Key="S.Dns.Desc.Fastest">Test Google and Cloudflare, then use the quicker one.</sys:String>
+    <sys:String x:Key="S.Dns.Desc.Google">Fast and reliable.</sys:String>
+    <sys:String x:Key="S.Dns.Desc.Cloudflare">Fast and privacy focused.</sys:String>
+    <sys:String x:Key="S.Dns.Desc.Cloudflare_Malware">Cloudflare plus malware blocking.</sys:String>
+    <sys:String x:Key="S.Dns.Desc.Cloudflare_Malware_Adult">Blocks malware and adult content.</sys:String>
+    <sys:String x:Key="S.Dns.Desc.Open_DNS">OpenDNS FamilyShield with family filtering.</sys:String>
+    <sys:String x:Key="S.Dns.Desc.Quad9">Security focused, blocks malicious domains.</sys:String>
+    <sys:String x:Key="S.Dns.Desc.AdGuard_Ads_Trackers">Blocks ads and trackers.</sys:String>
+    <sys:String x:Key="S.Dns.Desc.AdGuard_Ads_Trackers_Malware_Adult">Blocks ads, trackers, malware, and adult content.</sys:String>
+
+    <!-- Performance -->
+    <sys:String x:Key="S.Perf.UltTitle">Ultimate Performance</sys:String>
+    <sys:String x:Key="S.Perf.UltDesc">Adds and activates the Ultimate Performance power plan for the lowest latency. Disabling restores the default Windows power plans.</sys:String>
+    <sys:String x:Key="S.Perf.LaptopWarning">Not recommended for laptops (drains battery)</sys:String>
+    <sys:String x:Key="S.Perf.Enable">Enable</sys:String>
+    <sys:String x:Key="S.Perf.Disable">Restore defaults</sys:String>
+    <sys:String x:Key="S.Perf.OosuTitle">O&amp;O ShutUp10++</sys:String>
+    <sys:String x:Key="S.Perf.OosuDesc">A free privacy tool for fine-grained control of telemetry and app permissions. Nimbus downloads it (about 82 MB) and opens it right away, with nothing installed.</sys:String>
+    <sys:String x:Key="S.Perf.OosuRun">Download and run</sys:String>
+
+    <!-- AppX -->
+    <sys:String x:Key="S.Appx.Hint">Remove built-in Windows apps you don't use, or install them again.</sys:String>
+    <sys:String x:Key="S.Appx.Refresh">Refresh</sys:String>
+    <sys:String x:Key="S.Appx.Remove">Remove selected</sys:String>
+    <sys:String x:Key="S.Appx.Install">Install selected</sys:String>
+    <sys:String x:Key="S.Appx.Installed">Installed</sys:String>
+    <sys:String x:Key="S.Appx.NotInstalled">Not installed</sys:String>
+    <sys:String x:Key="S.Appx.Checking">Checking…</sys:String>
+
+    <!-- Windows Update -->
+    <sys:String x:Key="S.Upd.Subtitle">Control how Windows Update behaves on this PC, and keep Nimbus up to date.</sys:String>
+    <sys:String x:Key="S.Upd.WindowsTitle">Windows Update mode</sys:String>
+    <sys:String x:Key="S.Upd.CurrentMode">Current: {0}</sys:String>
+    <sys:String x:Key="S.Upd.Badge.Recommended">Recommended</sys:String>
+    <sys:String x:Key="S.Upd.Mode.Recommended">Recommended</sys:String>
+    <sys:String x:Key="S.Upd.Mode.Default">Windows default</sys:String>
+    <sys:String x:Key="S.Upd.Mode.Disabled">Disable updates</sys:String>
+    <sys:String x:Key="S.Upd.Mode.Recommended.Desc">Feature updates are deferred 365 days, quality updates 4 days, and drivers are excluded. Updates still download and you're notified before they install.</sys:String>
+    <sys:String x:Key="S.Upd.Mode.Default.Desc">Removes the update policies set by Nimbus/WinUtil and restores update services and scheduled tasks.</sys:String>
+    <sys:String x:Key="S.Upd.Mode.Disabled.Desc">Stops update services, disables their scheduled tasks, and clears downloaded update files. This PC will receive no security patches.</sys:String>
+    <sys:String x:Key="S.Upd.ApplyMode">Apply mode: {0}</sys:String>
+    <sys:String x:Key="S.Upd.HomeWarning">Windows Home doesn't support deferring updates through policy. You can still apply the Recommended mode, but the deferral may not take effect.</sys:String>
+    <sys:String x:Key="S.Upd.RestartNote">Some changes only take full effect after a restart.</sys:String>
+    <sys:String x:Key="S.Upd.FixTitle">Repair Windows Update</sys:String>
+    <sys:String x:Key="S.Upd.FixDesc">Resets Windows Update components (services, cache, and settings) when updates keep failing or get stuck.</sys:String>
+    <sys:String x:Key="S.Upd.FixAggressive">Aggressive mode: also run a system repair scan (DISM and SFC). Takes longer, 15 minutes or more.</sys:String>
+    <sys:String x:Key="S.Upd.FixRun">Run repair</sys:String>
+
+    <!-- Nimbus app update -->
+    <sys:String x:Key="S.AppUpd.Title">Nimbus updates</sys:String>
+    <sys:String x:Key="S.AppUpd.Check">Check for updates</sys:String>
+    <sys:String x:Key="S.AppUpd.UpdateNow">Update now</sys:String>
+    <sys:String x:Key="S.AppUpd.Later">Later</sys:String>
+    <sys:String x:Key="S.AppUpd.Releases">See all releases on GitHub</sys:String>
+    <sys:String x:Key="S.AppUpd.DialogTitle">A new version of Nimbus is available</sys:String>
+    <sys:String x:Key="S.AppUpd.WhatsNew">What's new</sys:String>
+    <sys:String x:Key="S.AppUpd.NoNotes">No release notes. See the releases page on GitHub for details.</sys:String>
+    <sys:String x:Key="S.AppUpd.Idle">Press Check for updates to look for a newer version.</sys:String>
+    <sys:String x:Key="S.AppUpd.NotConfigured">The GitHub repository address isn't set yet (see README, Auto-update section).</sys:String>
+    <sys:String x:Key="S.AppUpd.NotInstalled">Auto-update works once Nimbus is installed with Setup.exe.</sys:String>
+    <sys:String x:Key="S.AppUpd.Checking">Looking for the latest version…</sys:String>
+    <sys:String x:Key="S.AppUpd.UpToDate">You're on the latest version.</sys:String>
+    <sys:String x:Key="S.AppUpd.Available">Version {0} is available.</sys:String>
+    <sys:String x:Key="S.AppUpd.Downloading">Downloading update…</sys:String>
+    <sys:String x:Key="S.AppUpd.Ready">Update ready. Nimbus will restart.</sys:String>
+    <sys:String x:Key="S.AppUpd.Error">Couldn't check for updates: {0}</sys:String>
+    <sys:String x:Key="S.Update.Badge">Update available v{0}</sys:String>
+
+    <!-- History -->
+    <sys:String x:Key="S.Hist.Subtitle">Every change Nimbus made on this PC.</sys:String>
+    <sys:String x:Key="S.Hist.Clear">Clear history</sys:String>
+    <sys:String x:Key="S.Hist.UndoAgain">Undo</sys:String>
+    <sys:String x:Key="S.Hist.Log">Log</sys:String>
+    <sys:String x:Key="S.Hist.OpenLogs">Open log folder</sys:String>
+    <sys:String x:Key="S.Hist.EmptyTitle">No history yet</sys:String>
+    <sys:String x:Key="S.Hist.Empty">Tweaks, update modes, and other changes you apply will show up here.</sys:String>
+
+    <!-- Settings -->
+    <sys:String x:Key="S.Set.Appearance">Appearance</sys:String>
+    <sys:String x:Key="S.Set.Behavior">Behavior</sys:String>
+    <sys:String x:Key="S.Set.Language">Language</sys:String>
+    <sys:String x:Key="S.Set.LanguageDesc">The language of the Nimbus interface.</sys:String>
+    <sys:String x:Key="S.Set.Backdrop">Window effect</sys:String>
+    <sys:String x:Key="S.Set.BackdropDesc">The translucent Windows 11 background.</sys:String>
+    <sys:String x:Key="S.Set.Acrylic">Acrylic</sys:String>
+    <sys:String x:Key="S.Set.Mica">Mica</sys:String>
+    <sys:String x:Key="S.Set.Solid">Solid</sys:String>
+    <sys:String x:Key="S.Set.BackdropUnsupported">Translucent effects need Windows 11 version 22H2 or later. Nimbus uses a solid background.</sys:String>
+    <sys:String x:Key="S.Set.AutoRestore">Automatic restore point</sys:String>
+    <sys:String x:Key="S.Set.AutoRestoreDesc">Create a restore point every time tweaks are applied.</sys:String>
+    <sys:String x:Key="S.Set.CheckUpdates">Check for updates on launch</sys:String>
+    <sys:String x:Key="S.Set.CheckUpdatesDesc">Let you know when a newer Nimbus is on GitHub.</sys:String>
+    <sys:String x:Key="S.Set.About">About</sys:String>
+    <sys:String x:Key="S.Set.AboutDesc">Windows tweaks and update management with a friendlier interface.</sys:String>
+    <sys:String x:Key="S.Set.Credits">The tweak list and its scripts come from WinUtil by Chris Titus Tech (MIT license). Nimbus is not an official Chris Titus Tech project.</sys:String>
+
+    <!-- Dialogs -->
+    <sys:String x:Key="S.Dlg.Cancel">Cancel</sys:String>
+    <sys:String x:Key="S.Dlg.Continue">Continue</sys:String>
+    <sys:String x:Key="S.Dlg.Close">Close</sys:String>
+    <sys:String x:Key="S.Dlg.Apply.Title">Apply tweaks?</sys:String>
+    <sys:String x:Key="S.Dlg.Apply.Msg">Nimbus will apply these {0} changes to Windows:</sys:String>
+    <sys:String x:Key="S.Dlg.Undo.Title">Undo tweaks?</sys:String>
+    <sys:String x:Key="S.Dlg.Undo.Msg">Nimbus will restore these {0} tweaks to their original settings:</sys:String>
+    <sys:String x:Key="S.Dlg.Dns.Title">Change DNS?</sys:String>
+    <sys:String x:Key="S.Dlg.Dns.Msg">DNS on every active network adapter will be changed to {0}. Your connection may drop for a moment.</sys:String>
+    <sys:String x:Key="S.Dlg.Ult.Msg">The Ultimate Performance power plan keeps the CPU ready at full speed. Good for desktops, but it drains laptop batteries.</sys:String>
+    <sys:String x:Key="S.Dlg.UpdMode.Title">Change Windows Update mode?</sys:String>
+    <sys:String x:Key="S.Dlg.UpdDisable.Title">Disable Windows Update?</sys:String>
+    <sys:String x:Key="S.Dlg.UpdDisable.Msg">This stops update services, disables update scheduled tasks, and clears downloaded update files. Your PC won't receive security patches until you switch modes again. Continue?</sys:String>
+    <sys:String x:Key="S.Dlg.Fix.Msg">Windows Update components will be reset to their defaults. Restart your PC when it's done.</sys:String>
+    <sys:String x:Key="S.Dlg.Fix.MsgAggressive">Windows Update components will be reset, followed by a system repair scan (DISM and SFC). This can take a while. Restart your PC when it's done.</sys:String>
+    <sys:String x:Key="S.Dlg.AppxRemove.Title">Remove built-in apps?</sys:String>
+    <sys:String x:Key="S.Dlg.AppxRemove.Msg">These apps ({0}) will be removed for every user on this PC:</sys:String>
+    <sys:String x:Key="S.Dlg.AppxInstall.Title">Install apps?</sys:String>
+    <sys:String x:Key="S.Dlg.AppxInstall.Msg">These apps ({0}) will be installed again, from local files or the Microsoft Store:</sys:String>
+    <sys:String x:Key="S.Dlg.ClearHistory.Msg">All history entries will be removed. Log files are kept.</sys:String>
+
+    <!-- Jobs -->
+    <sys:String x:Key="S.Job.Preparing">Getting ready…</sys:String>
+    <sys:String x:Key="S.Job.Running">Working, please keep Nimbus open.</sys:String>
+    <sys:String x:Key="S.Job.Done">Done</sys:String>
+    <sys:String x:Key="S.Job.DoneWarnings">Done, with some warnings (see the log)</sys:String>
+    <sys:String x:Key="S.Job.Failed">Failed. See the log for details.</sys:String>
+    <sys:String x:Key="S.Job.DoneStatus">Every step has run.</sys:String>
+    <sys:String x:Key="S.Job.FailedStatus">Stopped because of an error.</sys:String>
+    <sys:String x:Key="S.Job.ExitCode">PowerShell exited with code {0}.</sys:String>
+    <sys:String x:Key="S.Job.ShowLog">Show / hide log</sys:String>
+    <sys:String x:Key="S.Job.OpenLog">Open log file</sys:String>
+    <sys:String x:Key="S.Job.RestartHint">Some changes only take effect after Explorer restarts, you sign out, or you restart the PC.</sys:String>
+
+    <sys:String x:Key="S.JobTitle.Apply">Applying tweaks</sys:String>
+    <sys:String x:Key="S.JobTitle.Undo">Undoing tweaks</sys:String>
+    <sys:String x:Key="S.JobTitle.Preset">Optimizing with the {0} preset</sys:String>
+    <sys:String x:Key="S.JobTitle.RestorePoint">Creating a restore point</sys:String>
+    <sys:String x:Key="S.JobTitle.Dns">Switching DNS to {0}</sys:String>
+    <sys:String x:Key="S.JobTitle.UltOn">Enabling Ultimate Performance</sys:String>
+    <sys:String x:Key="S.JobTitle.UltOff">Restoring default power plans</sys:String>
+    <sys:String x:Key="S.JobTitle.Oosu">Opening O&amp;O ShutUp10++</sys:String>
+    <sys:String x:Key="S.JobTitle.AppxRemove">Removing built-in apps</sys:String>
+    <sys:String x:Key="S.JobTitle.AppxInstall">Installing apps</sys:String>
+
+    <sys:String x:Key="S.Status.Applying">Applying: {0}</sys:String>
+    <sys:String x:Key="S.Status.Undoing">Undoing: {0}</sys:String>
+    <sys:String x:Key="S.Status.Installing">Installing: {0}</sys:String>
+    <sys:String x:Key="S.Status.Downloading">Downloading… {0:0.0} / {1:0.0} MB</sys:String>
+
+    <sys:String x:Key="S.State.On">Turned on</sys:String>
+    <sys:String x:Key="S.State.Off">Turned off</sys:String>
+
+    <sys:String x:Key="S.Toast.On">Turned on: {0}</sys:String>
+    <sys:String x:Key="S.Toast.Off">Turned off: {0}</sys:String>
+    <sys:String x:Key="S.Toast.Set">Changed: {0} → {1}</sys:String>
+    <sys:String x:Key="S.Toast.Failed">Couldn't change {0}. See History for the log.</sys:String>
+    <sys:String x:Key="S.Toast.Busy">Wait for the current task to finish first.</sys:String>
+    <sys:String x:Key="S.Toast.WaitForJob">Nimbus is still working. Wait until it finishes before closing.</sys:String>
+    <sys:String x:Key="S.Toast.NothingToUndo">None of the selected tweaks can be undone.</sys:String>
+
+    <sys:String x:Key="S.Error.Unexpected">Something unexpected went wrong: {0}&#x0a;&#x0a;Details were saved in: {1}</sys:String>
+</ResourceDictionary>

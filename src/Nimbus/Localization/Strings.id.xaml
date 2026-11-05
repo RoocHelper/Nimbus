@@ -1,0 +1,236 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <!-- Navigation -->
+    <sys:String x:Key="S.Nav.Home">Beranda</sys:String>
+    <sys:String x:Key="S.Nav.Tweaks">Tweaks</sys:String>
+    <sys:String x:Key="S.Nav.Updates">Updates</sys:String>
+    <sys:String x:Key="S.Nav.History">Riwayat</sys:String>
+    <sys:String x:Key="S.Nav.Settings">Setelan</sys:String>
+
+    <!-- Home -->
+    <sys:String x:Key="S.Home.Morning">Selamat pagi</sys:String>
+    <sys:String x:Key="S.Home.Afternoon">Selamat siang</sys:String>
+    <sys:String x:Key="S.Home.Evening">Selamat sore</sys:String>
+    <sys:String x:Key="S.Home.Night">Selamat malam</sys:String>
+    <sys:String x:Key="S.Home.Optimize">Optimalkan</sys:String>
+    <sys:String x:Key="S.Home.HeroTitle">PC kamu siap dioptimalkan</sys:String>
+    <sys:String x:Key="S.Home.SafetyNote">Restore point dibuat otomatis sebelum perubahan, dan semua tweak bisa di-undo.</sys:String>
+    <sys:String x:Key="S.Home.ActiveTweaks">Tweak aktif</sys:String>
+    <sys:String x:Key="S.Home.UpdateMode">Mode Windows Update</sys:String>
+    <sys:String x:Key="S.Home.System">Sistem</sys:String>
+    <sys:String x:Key="S.Home.Build">Build {0}</sys:String>
+    <sys:String x:Key="S.Home.Access">Hak akses</sys:String>
+    <sys:String x:Key="S.Home.Admin">Administrator</sys:String>
+    <sys:String x:Key="S.Home.HomeEdition">Kamu memakai Windows edisi Home. Pengaturan penundaan update (mode Rekomendasi) hanya berlaku penuh di edisi Pro, Enterprise, dan Education.</sys:String>
+    <sys:String x:Key="S.Home.QuickActions">Aksi cepat</sys:String>
+    <sys:String x:Key="S.Home.ActTweaks">Pilih tweak sendiri</sys:String>
+    <sys:String x:Key="S.Home.ActTweaksDesc">Essential, advanced, preferensi, DNS, dan lainnya</sys:String>
+    <sys:String x:Key="S.Home.ActUpdates">Atur Windows Update</sys:String>
+    <sys:String x:Key="S.Home.ActUpdatesDesc">Pilih mode update dan perbaiki error update</sys:String>
+    <sys:String x:Key="S.Home.ActRestore">Buat restore point</sys:String>
+    <sys:String x:Key="S.Home.ActRestoreDesc">Titik pemulihan untuk berjaga-jaga</sys:String>
+
+    <!-- Presets -->
+    <sys:String x:Key="S.Preset.Minimal">Minimal</sys:String>
+    <sys:String x:Key="S.Preset.Standard">Standard</sys:String>
+    <sys:String x:Key="S.Preset.Advanced">Advanced</sys:String>
+    <sys:String x:Key="S.Preset.Clear">Kosongkan</sys:String>
+    <sys:String x:Key="S.Preset.SelectApplied">Pilih yang aktif</sys:String>
+    <sys:String x:Key="S.Preset.Minimal.Desc">Preset Minimal: {0} tweak paling ringan dan aman untuk semua PC.</sys:String>
+    <sys:String x:Key="S.Preset.Standard.Desc">Preset Standard: {0} tweak yang disarankan untuk kebanyakan pengguna. Privasi lebih baik, PC lebih ringan.</sys:String>
+    <sys:String x:Key="S.Preset.Advanced.Desc">Preset Advanced: {0} tweak untuk pengguna berpengalaman. Baca dulu daftarnya sebelum lanjut.</sys:String>
+
+    <!-- Categories -->
+    <sys:String x:Key="S.Cat.Essential">Essential</sys:String>
+    <sys:String x:Key="S.Cat.Advanced">Advanced</sys:String>
+    <sys:String x:Key="S.Cat.Preferences">Preferensi</sys:String>
+    <sys:String x:Key="S.Cat.Dns">DNS</sys:String>
+    <sys:String x:Key="S.Cat.Performance">Performa</sys:String>
+    <sys:String x:Key="S.Cat.Appx">Aplikasi bawaan</sys:String>
+
+    <!-- Tweaks -->
+    <sys:String x:Key="S.Tweaks.Subtitle">Pilih tweak lalu tekan Terapkan. Preferensi langsung berlaku saat tombolnya digeser.</sys:String>
+    <sys:String x:Key="S.Tweaks.Search">Cari tweak…</sys:String>
+    <sys:String x:Key="S.Tweaks.QuickSelect">Pilih cepat:</sys:String>
+    <sys:String x:Key="S.Tweaks.Selected">Dipilih: {0}</sys:String>
+    <sys:String x:Key="S.Tweaks.Apply">Terapkan</sys:String>
+    <sys:String x:Key="S.Tweaks.Undo">Undo</sys:String>
+    <sys:String x:Key="S.Tweaks.Active">Aktif</sys:String>
+    <sys:String x:Key="S.Tweaks.LearnMore">Lihat dokumentasi tweak ini</sys:String>
+    <sys:String x:Key="S.Tweaks.NoResults">Tidak ada yang cocok dengan pencarianmu.</sys:String>
+    <sys:String x:Key="S.Tweaks.AdvancedWarning">Tweak Advanced bisa berdampak besar. Baca deskripsinya dan pastikan restore point aktif sebelum menerapkan.</sys:String>
+    <sys:String x:Key="S.Tweaks.PrefsHint">Perubahan di sini langsung diterapkan. Geser lagi untuk mengembalikannya.</sys:String>
+
+    <!-- Risk -->
+    <sys:String x:Key="S.Risk.Safe">Aman</sys:String>
+    <sys:String x:Key="S.Risk.Caution">Hati-hati</sys:String>
+    <sys:String x:Key="S.Risk.High">Berisiko</sys:String>
+
+    <!-- DNS -->
+    <sys:String x:Key="S.Dns.Hint">Pilih penyedia DNS untuk semua adapter jaringan yang aktif (IPv4 dan IPv6).</sys:String>
+    <sys:String x:Key="S.Dns.Apply">Terapkan DNS</sys:String>
+    <sys:String x:Key="S.Dns.DHCP">Otomatis (DHCP)</sys:String>
+    <sys:String x:Key="S.Dns.Fastest">Tercepat</sys:String>
+    <sys:String x:Key="S.Dns.Desc.DHCP">Kembali memakai DNS dari router atau ISP.</sys:String>
+    <sys:String x:Key="S.Dns.Desc.Fastest">Uji Google dan Cloudflare, lalu pakai yang paling cepat.</sys:String>
+    <sys:String x:Key="S.Dns.Desc.Google">Cepat dan stabil.</sys:String>
+    <sys:String x:Key="S.Dns.Desc.Cloudflare">Cepat dan fokus pada privasi.</sys:String>
+    <sys:String x:Key="S.Dns.Desc.Cloudflare_Malware">Cloudflare + blokir situs malware.</sys:String>
+    <sys:String x:Key="S.Dns.Desc.Cloudflare_Malware_Adult">Blokir malware dan konten dewasa.</sys:String>
+    <sys:String x:Key="S.Dns.Desc.Open_DNS">OpenDNS FamilyShield dengan filter keluarga.</sys:String>
+    <sys:String x:Key="S.Dns.Desc.Quad9">Fokus keamanan, blokir domain berbahaya.</sys:String>
+    <sys:String x:Key="S.Dns.Desc.AdGuard_Ads_Trackers">Blokir iklan dan pelacak.</sys:String>
+    <sys:String x:Key="S.Dns.Desc.AdGuard_Ads_Trackers_Malware_Adult">Blokir iklan, pelacak, malware, dan konten dewasa.</sys:String>
+
+    <!-- Performance -->
+    <sys:String x:Key="S.Perf.UltTitle">Ultimate Performance</sys:String>
+    <sys:String x:Key="S.Perf.UltDesc">Menambahkan dan mengaktifkan power plan Ultimate Performance untuk latensi serendah mungkin. Menonaktifkan akan mengembalikan power plan bawaan Windows.</sys:String>
+    <sys:String x:Key="S.Perf.LaptopWarning">Tidak disarankan untuk laptop (boros baterai)</sys:String>
+    <sys:String x:Key="S.Perf.Enable">Aktifkan</sys:String>
+    <sys:String x:Key="S.Perf.Disable">Kembalikan bawaan</sys:String>
+    <sys:String x:Key="S.Perf.OosuTitle">O&amp;O ShutUp10++</sys:String>
+    <sys:String x:Key="S.Perf.OosuDesc">Alat privasi gratis untuk mengatur telemetri dan izin aplikasi secara detail. Nimbus mengunduhnya (sekitar 82 MB) lalu langsung membukanya, tanpa instalasi.</sys:String>
+    <sys:String x:Key="S.Perf.OosuRun">Unduh dan jalankan</sys:String>
+
+    <!-- AppX -->
+    <sys:String x:Key="S.Appx.Hint">Hapus aplikasi bawaan Windows yang tidak kamu pakai, atau pasang kembali.</sys:String>
+    <sys:String x:Key="S.Appx.Refresh">Muat ulang</sys:String>
+    <sys:String x:Key="S.Appx.Remove">Hapus terpilih</sys:String>
+    <sys:String x:Key="S.Appx.Install">Pasang terpilih</sys:String>
+    <sys:String x:Key="S.Appx.Installed">Terpasang</sys:String>
+    <sys:String x:Key="S.Appx.NotInstalled">Tidak terpasang</sys:String>
+    <sys:String x:Key="S.Appx.Checking">Memeriksa…</sys:String>
+
+    <!-- Windows Update -->
+    <sys:String x:Key="S.Upd.Subtitle">Atur cara Windows Update bekerja di PC ini, dan perbarui Nimbus.</sys:String>
+    <sys:String x:Key="S.Upd.WindowsTitle">Mode Windows Update</sys:String>
+    <sys:String x:Key="S.Upd.CurrentMode">Saat ini: {0}</sys:String>
+    <sys:String x:Key="S.Upd.Badge.Recommended">Disarankan</sys:String>
+    <sys:String x:Key="S.Upd.Mode.Recommended">Rekomendasi</sys:String>
+    <sys:String x:Key="S.Upd.Mode.Default">Bawaan Windows</sys:String>
+    <sys:String x:Key="S.Upd.Mode.Disabled">Matikan update</sys:String>
+    <sys:String x:Key="S.Upd.Mode.Recommended.Desc">Feature update ditunda 365 hari, quality update ditunda 4 hari, dan driver tidak ikut diperbarui. Update tetap diunduh lalu kamu diberi tahu sebelum dipasang.</sys:String>
+    <sys:String x:Key="S.Upd.Mode.Default.Desc">Menghapus pengaturan update yang dibuat Nimbus/WinUtil, mengembalikan layanan dan jadwal update seperti semula.</sys:String>
+    <sys:String x:Key="S.Upd.Mode.Disabled.Desc">Menghentikan layanan update, mematikan jadwalnya, dan menghapus file update yang sudah diunduh. PC tidak akan menerima patch keamanan.</sys:String>
+    <sys:String x:Key="S.Upd.ApplyMode">Terapkan mode {0}</sys:String>
+    <sys:String x:Key="S.Upd.HomeWarning">Windows Home tidak mendukung penundaan update lewat kebijakan. Mode Rekomendasi tetap bisa diterapkan, tetapi penundaannya mungkin tidak berlaku.</sys:String>
+    <sys:String x:Key="S.Upd.RestartNote">Beberapa perubahan baru berlaku penuh setelah restart.</sys:String>
+    <sys:String x:Key="S.Upd.FixTitle">Perbaiki Windows Update</sys:String>
+    <sys:String x:Key="S.Upd.FixDesc">Reset komponen Windows Update (layanan, cache, dan pengaturan) jika update sering gagal atau macet.</sys:String>
+    <sys:String x:Key="S.Upd.FixAggressive">Mode agresif: jalankan juga scan perbaikan sistem (DISM dan SFC). Lebih lama, bisa 15 menit atau lebih.</sys:String>
+    <sys:String x:Key="S.Upd.FixRun">Jalankan perbaikan</sys:String>
+
+    <!-- Nimbus app update -->
+    <sys:String x:Key="S.AppUpd.Title">Pembaruan Nimbus</sys:String>
+    <sys:String x:Key="S.AppUpd.Check">Cek update</sys:String>
+    <sys:String x:Key="S.AppUpd.UpdateNow">Update sekarang</sys:String>
+    <sys:String x:Key="S.AppUpd.Later">Nanti</sys:String>
+    <sys:String x:Key="S.AppUpd.Releases">Lihat semua rilis di GitHub</sys:String>
+    <sys:String x:Key="S.AppUpd.DialogTitle">Versi baru Nimbus tersedia</sys:String>
+    <sys:String x:Key="S.AppUpd.WhatsNew">Yang baru</sys:String>
+    <sys:String x:Key="S.AppUpd.NoNotes">Catatan rilis tidak tersedia. Lihat halaman rilis di GitHub untuk detailnya.</sys:String>
+    <sys:String x:Key="S.AppUpd.Idle">Tekan Cek update untuk mencari versi terbaru.</sys:String>
+    <sys:String x:Key="S.AppUpd.NotConfigured">Alamat repository GitHub belum diatur (lihat README, bagian Auto-update).</sys:String>
+    <sys:String x:Key="S.AppUpd.NotInstalled">Auto-update aktif setelah Nimbus dipasang lewat Setup.exe.</sys:String>
+    <sys:String x:Key="S.AppUpd.Checking">Mencari versi terbaru…</sys:String>
+    <sys:String x:Key="S.AppUpd.UpToDate">Kamu sudah memakai versi terbaru.</sys:String>
+    <sys:String x:Key="S.AppUpd.Available">Versi {0} tersedia.</sys:String>
+    <sys:String x:Key="S.AppUpd.Downloading">Mengunduh update…</sys:String>
+    <sys:String x:Key="S.AppUpd.Ready">Update siap. Nimbus akan dibuka ulang.</sys:String>
+    <sys:String x:Key="S.AppUpd.Error">Gagal memeriksa update: {0}</sys:String>
+    <sys:String x:Key="S.Update.Badge">Update tersedia v{0}</sys:String>
+
+    <!-- History -->
+    <sys:String x:Key="S.Hist.Subtitle">Semua perubahan yang dibuat Nimbus di PC ini.</sys:String>
+    <sys:String x:Key="S.Hist.Clear">Hapus riwayat</sys:String>
+    <sys:String x:Key="S.Hist.UndoAgain">Urungkan</sys:String>
+    <sys:String x:Key="S.Hist.Log">Log</sys:String>
+    <sys:String x:Key="S.Hist.OpenLogs">Buka folder log</sys:String>
+    <sys:String x:Key="S.Hist.EmptyTitle">Belum ada riwayat</sys:String>
+    <sys:String x:Key="S.Hist.Empty">Tweak, mode update, dan perubahan lain yang kamu terapkan akan muncul di sini.</sys:String>
+
+    <!-- Settings -->
+    <sys:String x:Key="S.Set.Appearance">Tampilan</sys:String>
+    <sys:String x:Key="S.Set.Behavior">Perilaku</sys:String>
+    <sys:String x:Key="S.Set.Language">Bahasa</sys:String>
+    <sys:String x:Key="S.Set.LanguageDesc">Bahasa antarmuka Nimbus.</sys:String>
+    <sys:String x:Key="S.Set.Backdrop">Efek jendela</sys:String>
+    <sys:String x:Key="S.Set.BackdropDesc">Latar transparan khas Windows 11.</sys:String>
+    <sys:String x:Key="S.Set.Acrylic">Acrylic</sys:String>
+    <sys:String x:Key="S.Set.Mica">Mica</sys:String>
+    <sys:String x:Key="S.Set.Solid">Solid</sys:String>
+    <sys:String x:Key="S.Set.BackdropUnsupported">Efek transparan butuh Windows 11 versi 22H2 atau lebih baru. Nimbus memakai latar solid.</sys:String>
+    <sys:String x:Key="S.Set.AutoRestore">Restore point otomatis</sys:String>
+    <sys:String x:Key="S.Set.AutoRestoreDesc">Buat titik pemulihan setiap kali menerapkan tweak.</sys:String>
+    <sys:String x:Key="S.Set.CheckUpdates">Cek update saat dibuka</sys:String>
+    <sys:String x:Key="S.Set.CheckUpdatesDesc">Beri tahu jika ada versi Nimbus yang lebih baru di GitHub.</sys:String>
+    <sys:String x:Key="S.Set.About">Tentang</sys:String>
+    <sys:String x:Key="S.Set.AboutDesc">Tweak dan pengatur Windows Update dengan tampilan yang lebih nyaman.</sys:String>
+    <sys:String x:Key="S.Set.Credits">Daftar tweak dan skripnya berasal dari WinUtil oleh Chris Titus Tech (lisensi MIT). Nimbus bukan proyek resmi Chris Titus Tech.</sys:String>
+
+    <!-- Dialogs -->
+    <sys:String x:Key="S.Dlg.Cancel">Batal</sys:String>
+    <sys:String x:Key="S.Dlg.Continue">Lanjutkan</sys:String>
+    <sys:String x:Key="S.Dlg.Close">Tutup</sys:String>
+    <sys:String x:Key="S.Dlg.Apply.Title">Terapkan tweak?</sys:String>
+    <sys:String x:Key="S.Dlg.Apply.Msg">Nimbus akan menerapkan {0} perubahan berikut ke Windows:</sys:String>
+    <sys:String x:Key="S.Dlg.Undo.Title">Undo tweak?</sys:String>
+    <sys:String x:Key="S.Dlg.Undo.Msg">Nimbus akan mengembalikan {0} tweak berikut ke pengaturan semula:</sys:String>
+    <sys:String x:Key="S.Dlg.Dns.Title">Ganti DNS?</sys:String>
+    <sys:String x:Key="S.Dlg.Dns.Msg">DNS semua adapter jaringan yang aktif akan diubah ke {0}. Koneksi internet bisa terputus sebentar.</sys:String>
+    <sys:String x:Key="S.Dlg.Ult.Msg">Power plan Ultimate Performance membuat CPU selalu siap bekerja penuh. Cocok untuk PC desktop, tetapi boros daya di laptop.</sys:String>
+    <sys:String x:Key="S.Dlg.UpdMode.Title">Ubah mode Windows Update?</sys:String>
+    <sys:String x:Key="S.Dlg.UpdDisable.Title">Matikan Windows Update?</sys:String>
+    <sys:String x:Key="S.Dlg.UpdDisable.Msg">Ini menghentikan layanan update, mematikan jadwal update, dan menghapus file update yang sudah diunduh. PC kamu tidak akan menerima patch keamanan sampai mode dikembalikan. Yakin ingin melanjutkan?</sys:String>
+    <sys:String x:Key="S.Dlg.Fix.Msg">Komponen Windows Update akan di-reset ke kondisi bawaan. Setelah selesai, restart PC.</sys:String>
+    <sys:String x:Key="S.Dlg.Fix.MsgAggressive">Komponen Windows Update akan di-reset, lalu dilanjutkan scan perbaikan sistem (DISM dan SFC). Proses ini bisa memakan waktu lama. Setelah selesai, restart PC.</sys:String>
+    <sys:String x:Key="S.Dlg.AppxRemove.Title">Hapus aplikasi bawaan?</sys:String>
+    <sys:String x:Key="S.Dlg.AppxRemove.Msg">Aplikasi berikut ({0}) akan dihapus untuk semua pengguna di PC ini:</sys:String>
+    <sys:String x:Key="S.Dlg.AppxInstall.Title">Pasang aplikasi?</sys:String>
+    <sys:String x:Key="S.Dlg.AppxInstall.Msg">Aplikasi berikut ({0}) akan dipasang kembali, dari file lokal atau Microsoft Store:</sys:String>
+    <sys:String x:Key="S.Dlg.ClearHistory.Msg">Semua catatan riwayat akan dihapus. File log tetap disimpan.</sys:String>
+
+    <!-- Jobs -->
+    <sys:String x:Key="S.Job.Preparing">Menyiapkan…</sys:String>
+    <sys:String x:Key="S.Job.Running">Sedang berjalan, jangan tutup Nimbus.</sys:String>
+    <sys:String x:Key="S.Job.Done">Selesai</sys:String>
+    <sys:String x:Key="S.Job.DoneWarnings">Selesai, dengan beberapa peringatan (lihat log)</sys:String>
+    <sys:String x:Key="S.Job.Failed">Gagal. Lihat log untuk detailnya.</sys:String>
+    <sys:String x:Key="S.Job.DoneStatus">Semua langkah sudah dijalankan.</sys:String>
+    <sys:String x:Key="S.Job.FailedStatus">Proses berhenti karena terjadi kesalahan.</sys:String>
+    <sys:String x:Key="S.Job.ExitCode">PowerShell berhenti dengan kode {0}.</sys:String>
+    <sys:String x:Key="S.Job.ShowLog">Tampilkan / sembunyikan log</sys:String>
+    <sys:String x:Key="S.Job.OpenLog">Buka file log</sys:String>
+    <sys:String x:Key="S.Job.RestartHint">Beberapa perubahan baru berlaku setelah Explorer dibuka ulang, sign out, atau restart PC.</sys:String>
+
+    <sys:String x:Key="S.JobTitle.Apply">Menerapkan tweak</sys:String>
+    <sys:String x:Key="S.JobTitle.Undo">Mengembalikan tweak</sys:String>
+    <sys:String x:Key="S.JobTitle.Preset">Optimasi preset {0}</sys:String>
+    <sys:String x:Key="S.JobTitle.RestorePoint">Membuat restore point</sys:String>
+    <sys:String x:Key="S.JobTitle.Dns">Mengganti DNS ke {0}</sys:String>
+    <sys:String x:Key="S.JobTitle.UltOn">Mengaktifkan Ultimate Performance</sys:String>
+    <sys:String x:Key="S.JobTitle.UltOff">Mengembalikan power plan bawaan</sys:String>
+    <sys:String x:Key="S.JobTitle.Oosu">Membuka O&amp;O ShutUp10++</sys:String>
+    <sys:String x:Key="S.JobTitle.AppxRemove">Menghapus aplikasi bawaan</sys:String>
+    <sys:String x:Key="S.JobTitle.AppxInstall">Memasang aplikasi</sys:String>
+
+    <sys:String x:Key="S.Status.Applying">Menerapkan: {0}</sys:String>
+    <sys:String x:Key="S.Status.Undoing">Mengembalikan: {0}</sys:String>
+    <sys:String x:Key="S.Status.Installing">Memasang: {0}</sys:String>
+    <sys:String x:Key="S.Status.Downloading">Mengunduh… {0:0.0} / {1:0.0} MB</sys:String>
+
+    <sys:String x:Key="S.State.On">Diaktifkan</sys:String>
+    <sys:String x:Key="S.State.Off">Dinonaktifkan</sys:String>
+
+    <sys:String x:Key="S.Toast.On">Diaktifkan: {0}</sys:String>
+    <sys:String x:Key="S.Toast.Off">Dinonaktifkan: {0}</sys:String>
+    <sys:String x:Key="S.Toast.Set">Diubah: {0} → {1}</sys:String>
+    <sys:String x:Key="S.Toast.Failed">Gagal mengubah {0}. Cek Riwayat untuk log.</sys:String>
+    <sys:String x:Key="S.Toast.Busy">Tunggu proses yang sedang berjalan selesai dulu.</sys:String>
+    <sys:String x:Key="S.Toast.WaitForJob">Nimbus masih bekerja. Tunggu sampai selesai sebelum menutup.</sys:String>
+    <sys:String x:Key="S.Toast.NothingToUndo">Tidak ada tweak terpilih yang bisa di-undo.</sys:String>
+
+    <sys:String x:Key="S.Error.Unexpected">Terjadi kesalahan tak terduga: {0}&#x0a;&#x0a;Detail disimpan di folder: {1}</sys:String>
+</ResourceDictionary>

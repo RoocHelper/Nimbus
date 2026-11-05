@@ -1,0 +1,97 @@
+# Builds Nimbus and publishes a GitHub Release with an installer (Setup.exe),
+# a portable exe and auto-update packages.
+#
+# From the website: Actions tab -> "Release" -> "Run workflow" -> type the version (e.g. 1.0.1).
+# From git: push a tag such as v1.0.1.
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Versi baru, contoh 1.0.1 (harus lebih besar dari versi sebelumnya)"
+        required: true
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+env:
+  VPK_VERSION: 0.0.1298
+
+jobs:
+  release:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Read version
+        id: ver
+        shell: pwsh
+        run: |
+          $raw = if ("${{ github.event_name }}" -eq "workflow_dispatch") { "${{ github.event.inputs.version }}" } else { "${{ github.ref_name }}" }
+          $version = $raw.Trim().TrimStart('v', 'V')
+          if ($version -notmatch '^\d+\.\d+\.\d+$') { throw "Versi harus berbentuk 1.2.3, bukan '$raw'" }
+          "version=$version" >> $env:GITHUB_OUTPUT
+          "tag=v$version" >> $env:GITHUB_OUTPUT
+
+      - name: Publish
+        shell: pwsh
+        run: >
+          dotnet publish src/Nimbus/Nimbus.csproj -c Release -r win-x64 --self-contained true
+          -p:Version=${{ steps.ver.outputs.version }} -o publish
+
+      - name: Install Velopack CLI
+        shell: pwsh
+        run: dotnet tool install -g vpk --version $env:VPK_VERSION
+
+      - name: Download previous release (enables small delta updates)
+        shell: pwsh
+        continue-on-error: true
+        run: vpk download github --repoUrl "https://github.com/${{ github.repository }}" --token "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Pack installer and update packages
+        shell: pwsh
+        run: |
+          $vpkArgs = @(
+            'pack',
+            '--packId', 'Nimbus',
+            '--packVersion', '${{ steps.ver.outputs.version }}',
+            '--packDir', 'publish',
+            '--mainExe', 'Nimbus.exe',
+            '--packTitle', 'Nimbus',
+            '--icon', 'src/Nimbus/Assets/nimbus.ico'
+          )
+          if (Test-Path 'release-notes.md') { $vpkArgs += @('--releaseNotes', 'release-notes.md') }
+          vpk @vpkArgs
+
+      - name: Upload to GitHub Releases
+        shell: pwsh
+        run: >
+          vpk upload github --repoUrl "https://github.com/${{ github.repository }}"
+          --publish --releaseName "Nimbus v${{ steps.ver.outputs.version }}"
+          --tag "${{ steps.ver.outputs.tag }}" --token "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Build portable single-file exe
+        shell: pwsh
+        run: >
+          dotnet publish src/Nimbus/Nimbus.csproj -c Release -r win-x64 --self-contained true
+          -p:Version=${{ steps.ver.outputs.version }} -p:PublishSingleFile=true
+          -p:IncludeNativeLibrariesForSelfExtract=true -p:IncludeAllContentForSelfExtract=true
+          -p:EnableCompressionInSingleFile=true -p:DebugType=none -o portable
+
+      - name: Attach portable exe to the release
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          Copy-Item portable/Nimbus.exe Nimbus-Portable.exe
+          gh release upload "${{ steps.ver.outputs.tag }}" Nimbus-Portable.exe --clobber --repo "${{ github.repository }}"
