@@ -20,17 +20,30 @@
     <SolidColorBrush x:Key="TextMutedBrush" Color="#717A8C" />
 
     <!-- Surfaces (translucent so the Mica/Acrylic backdrop shows through) -->
-    <SolidColorBrush x:Key="WindowFillBrush" Color="#8C080B10" />
-    <SolidColorBrush x:Key="SidebarFillBrush" Color="#33000000" />
-    <SolidColorBrush x:Key="CardBrush" Color="#0FFFFFFF" />
-    <SolidColorBrush x:Key="CardHoverBrush" Color="#18FFFFFF" />
-    <SolidColorBrush x:Key="CardBorderBrush" Color="#17FFFFFF" />
+    <SolidColorBrush x:Key="WindowFillBrush" Color="#66070B10" />
+    <SolidColorBrush x:Key="SidebarFillBrush" Color="#14000000" />
+    <SolidColorBrush x:Key="CardBrush" Color="#0BFFFFFF" />
+    <SolidColorBrush x:Key="CardHoverBrush" Color="#15FFFFFF" />
+    <SolidColorBrush x:Key="CardBorderBrush" Color="#10FFFFFF" />
     <SolidColorBrush x:Key="DividerBrush" Color="#12FFFFFF" />
     <SolidColorBrush x:Key="ControlFillBrush" Color="#14FFFFFF" />
-    <SolidColorBrush x:Key="ControlHoverBrush" Color="#22FFFFFF" />
-    <SolidColorBrush x:Key="ControlBorderBrush" Color="#2BFFFFFF" />
-    <SolidColorBrush x:Key="OverlayBrush" Color="#B3050709" />
-    <SolidColorBrush x:Key="DialogBrush" Color="#F2141A23" />
+    <SolidColorBrush x:Key="ControlHoverBrush" Color="#26FFFFFF" />
+    <SolidColorBrush x:Key="ControlBorderBrush" Color="#1CFFFFFF" />
+    <SolidColorBrush x:Key="ChipSelectedBrush" Color="#F2F4F7FA" />
+    <SolidColorBrush x:Key="OnChipSelectedBrush" Color="#0B0F14" />
+    <SolidColorBrush x:Key="OverlayBrush" Color="#A6050709" />
+    <SolidColorBrush x:Key="DialogBrush" Color="#F2121820" />
+
+    <!-- Ambient teal glow painted over the backdrop (like an album-art tint) -->
+    <RadialGradientBrush x:Key="AmbientGlowBrush" Center="0.18,-0.05" GradientOrigin="0.18,-0.05" RadiusX="0.85" RadiusY="1.05">
+        <GradientStop Color="#472DD4BF" Offset="0" />
+        <GradientStop Color="#140D9488" Offset="0.55" />
+        <GradientStop Color="#002DD4BF" Offset="1" />
+    </RadialGradientBrush>
+    <RadialGradientBrush x:Key="AmbientGlow2Brush" Center="1.0,1.05" GradientOrigin="1.0,1.05" RadiusX="0.7" RadiusY="0.8">
+        <GradientStop Color="#260EA5E9" Offset="0" />
+        <GradientStop Color="#000EA5E9" Offset="1" />
+    </RadialGradientBrush>
 
     <!-- Status -->
     <SolidColorBrush x:Key="SuccessBrush" Color="#3DDC97" />
@@ -46,8 +59,8 @@
     <FontFamily x:Key="DisplayFont">Segoe UI Variable Display, Segoe UI</FontFamily>
     <FontFamily x:Key="IconFont">Segoe Fluent Icons, Segoe MDL2 Assets</FontFamily>
 
-    <CornerRadius x:Key="CardRadius">12</CornerRadius>
-    <CornerRadius x:Key="ControlRadius">8</CornerRadius>
+    <CornerRadius x:Key="CardRadius">14</CornerRadius>
+    <CornerRadius x:Key="ControlRadius">18</CornerRadius>
 
     <!-- Flags for the language switch -->
     <DrawingImage x:Key="FlagID">

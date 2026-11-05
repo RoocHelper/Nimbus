@@ -35,15 +35,13 @@
         </Grid.RowDefinitions>
 
         <!-- Header -->
-        <StackPanel Grid.Row="0" Margin="0,4,8,14">
+        <StackPanel Grid.Row="0" Margin="0,0,8,16">
             <TextBlock Text="{DynamicResource S.Nav.Tweaks}" Style="{StaticResource PageTitle}" />
             <TextBlock Text="{DynamicResource S.Tweaks.Subtitle}" Style="{StaticResource Body}" Margin="0,4,0,0" />
         </StackPanel>
 
         <!-- Category chips + search -->
         <DockPanel Grid.Row="1" Margin="0,0,8,14" LastChildFill="True">
-            <TextBox DockPanel.Dock="Right" Width="250" Style="{StaticResource SearchBox}" Tag="{DynamicResource S.Tweaks.Search}"
-                     Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged, Delay=150}" VerticalAlignment="Center" />
             <WrapPanel VerticalAlignment="Center">
                 <RadioButton Style="{StaticResource Chip}" GroupName="cat" Content="{DynamicResource S.Cat.Essential}"
                              IsChecked="{Binding SelectedCategory, Converter={StaticResource Eq}, ConverterParameter=essential}" />

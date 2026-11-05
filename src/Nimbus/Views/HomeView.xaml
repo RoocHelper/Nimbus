@@ -8,35 +8,36 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Grid x:Name="root" Width="148" Height="148" Background="Transparent" RenderTransformOrigin="0.5,0.5">
+                        <Grid x:Name="root" Width="132" Height="132" Background="Transparent" RenderTransformOrigin="0.5,0.5">
                             <Grid.RenderTransform>
                                 <ScaleTransform />
                             </Grid.RenderTransform>
                             <Ellipse x:Name="halo" Fill="{StaticResource AccentSubtleBrush}" Opacity="0.55" />
                             <Ellipse Margin="10" Stroke="{StaticResource AccentBrush}" StrokeThickness="3" Fill="#1A2DD4BF" />
-                            <Ellipse x:Name="spin" Margin="4" Stroke="{StaticResource AccentHoverBrush}" StrokeThickness="1.5"
+                            <Ellipse Margin="4" Stroke="{StaticResource AccentHoverBrush}" StrokeThickness="1.5"
                                      StrokeDashArray="2 6" Opacity="0.6" RenderTransformOrigin="0.5,0.5">
                                 <Ellipse.RenderTransform>
                                     <RotateTransform />
                                 </Ellipse.RenderTransform>
+                                <Ellipse.Triggers>
+                                    <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                                        <BeginStoryboard>
+                                            <Storyboard RepeatBehavior="Forever">
+                                                <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
+                                                                 From="0" To="360" Duration="0:0:24" />
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </EventTrigger>
+                                </Ellipse.Triggers>
                             </Ellipse>
                             <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-                                <TextBlock Style="{StaticResource Icon}" Text="&#xE945;" FontSize="30" Foreground="{StaticResource AccentBrush}" />
+                                <TextBlock Style="{StaticResource Icon}" Text="&#xE945;" FontSize="26" Foreground="{StaticResource AccentBrush}" />
                                 <ContentPresenter Margin="0,8,0,0" HorizontalAlignment="Center"
                                                   TextElement.FontSize="14" TextElement.FontWeight="SemiBold"
                                                   TextElement.Foreground="{StaticResource TextPrimaryBrush}" />
                             </StackPanel>
                         </Grid>
                         <ControlTemplate.Triggers>
-                            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-                                <BeginStoryboard>
-                                    <Storyboard RepeatBehavior="Forever">
-                                        <DoubleAnimation Storyboard.TargetName="spin"
-                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
-                                                         From="0" To="360" Duration="0:0:24" />
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </EventTrigger>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Trigger.EnterActions>
                                     <BeginStoryboard>
@@ -95,7 +96,7 @@
         <Style x:Key="StatIcon" TargetType="Border">
             <Setter Property="Width" Value="34" />
             <Setter Property="Height" Value="34" />
-            <Setter Property="CornerRadius" Value="9" />
+            <Setter Property="CornerRadius" Value="17" />
             <Setter Property="Background" Value="{StaticResource AccentSubtleBrush}" />
             <Setter Property="HorizontalAlignment" Value="Left" />
         </Style>
@@ -103,11 +104,11 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
         <StackPanel Margin="0,4,8,28">
-            <TextBlock Text="{Binding GreetingText}" Style="{StaticResource Caption}" FontSize="13" />
-            <TextBlock Text="{DynamicResource S.Nav.Home}" Style="{StaticResource PageTitle}" Margin="0,2,0,18" />
+            <TextBlock Text="{Binding GreetingText}" Style="{StaticResource Caption}" FontSize="13.5" FontWeight="SemiBold" Foreground="{StaticResource AccentBrush}" />
+            <TextBlock Text="{DynamicResource S.Nav.Home}" Style="{StaticResource PageTitle}" Margin="0,0,0,16" />
 
             <!-- Hero -->
-            <Border Style="{StaticResource Card}" Padding="24">
+            <Border Style="{StaticResource Card}" Padding="22,20">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -141,7 +142,7 @@
                         <Border Style="{StaticResource StatIcon}">
                             <TextBlock Style="{StaticResource Icon}" Text="&#xE9E9;" Foreground="{StaticResource AccentBrush}" />
                         </Border>
-                        <TextBlock Text="{DynamicResource S.Home.ActiveTweaks}" Style="{StaticResource Caption}" Margin="0,14,0,2" />
+                        <TextBlock Text="{DynamicResource S.Home.ActiveTweaks}" Style="{StaticResource Caption}" Margin="0,12,0,2" />
                         <TextBlock Text="{Binding ActiveTweaksText}" FontFamily="{StaticResource DisplayFont}" FontSize="22" FontWeight="SemiBold" />
                     </StackPanel>
                 </Border>
@@ -150,7 +151,7 @@
                         <Border Style="{StaticResource StatIcon}">
                             <TextBlock Style="{StaticResource Icon}" Text="&#xE895;" Foreground="{StaticResource AccentBrush}" />
                         </Border>
-                        <TextBlock Text="{DynamicResource S.Home.UpdateMode}" Style="{StaticResource Caption}" Margin="0,14,0,2" />
+                        <TextBlock Text="{DynamicResource S.Home.UpdateMode}" Style="{StaticResource Caption}" Margin="0,12,0,2" />
                         <TextBlock Text="{Binding UpdateModeText}" FontSize="16" FontWeight="SemiBold" Margin="0,4,0,0" TextTrimming="CharacterEllipsis">
                             <TextBlock.Style>
                                 <Style TargetType="TextBlock">
@@ -170,7 +171,7 @@
                         <Border Style="{StaticResource StatIcon}">
                             <TextBlock Style="{StaticResource Icon}" Text="&#xE7F4;" Foreground="{StaticResource AccentBrush}" />
                         </Border>
-                        <TextBlock Text="{DynamicResource S.Home.System}" Style="{StaticResource Caption}" Margin="0,14,0,2" />
+                        <TextBlock Text="{DynamicResource S.Home.System}" Style="{StaticResource Caption}" Margin="0,12,0,2" />
                         <TextBlock Text="{Binding SystemText}" FontSize="14" FontWeight="SemiBold" Margin="0,4,0,0" TextTrimming="CharacterEllipsis"
                                    ToolTip="{Binding SystemText}" />
                         <TextBlock Text="{Binding SystemDetail}" Style="{StaticResource Caption}" Margin="0,2,0,0" />
@@ -181,7 +182,7 @@
                         <Border Style="{StaticResource StatIcon}" Background="{StaticResource SuccessSubtleBrush}">
                             <TextBlock Style="{StaticResource Icon}" Text="&#xEA18;" Foreground="{StaticResource SuccessBrush}" />
                         </Border>
-                        <TextBlock Text="{DynamicResource S.Home.Access}" Style="{StaticResource Caption}" Margin="0,14,0,2" />
+                        <TextBlock Text="{DynamicResource S.Home.Access}" Style="{StaticResource Caption}" Margin="0,12,0,2" />
                         <TextBlock Text="{DynamicResource S.Home.Admin}" FontSize="15" FontWeight="SemiBold" Margin="0,4,0,0" Foreground="{StaticResource SuccessBrush}" />
                     </StackPanel>
                 </Border>
@@ -198,7 +199,7 @@
             </Border>
 
             <!-- Quick actions -->
-            <TextBlock Text="{DynamicResource S.Home.QuickActions}" Style="{StaticResource H3}" Margin="0,24,0,10" />
+            <TextBlock Text="{DynamicResource S.Home.QuickActions}" Style="{StaticResource H2}" Margin="0,22,0,10" />
             <UniformGrid Columns="3" Margin="-6,0">
                 <Button Style="{StaticResource ActionCard}" Margin="6"
                         Command="{Binding DataContext.NavigateCommand, RelativeSource={RelativeSource AncestorType=Window}}" CommandParameter="tweaks">

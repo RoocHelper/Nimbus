@@ -1,6 +1,4 @@
-## Nimbus 1.0.0
+## Nimbus 1.0.1
 
-- Rilis pertama: Beranda, Tweaks, Updates, Riwayat, dan Setelan
-- Bahasa Indonesia dan English
-- Efek jendela Acrylic / Mica di Windows 11
-- Auto-update dari GitHub Releases
+- Perbaikan: error "'arc' name cannot be found" saat membuka halaman Tweaks
+- Animasi loading kini hanya berjalan saat terlihat

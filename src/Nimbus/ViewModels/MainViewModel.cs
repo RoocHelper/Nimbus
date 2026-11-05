@@ -103,6 +103,26 @@ public sealed class MainViewModel : ObservableObject
         private set => SetProperty(ref _currentPage, value);
     }
 
+    /// <summary>Global search in the top bar; typing jumps to the Tweaks page.</summary>
+    public string SearchText
+    {
+        get => Tweaks.SearchText;
+        set
+        {
+            if (Tweaks.SearchText == value)
+            {
+                return;
+            }
+
+            Tweaks.SearchText = value ?? string.Empty;
+            OnPropertyChanged();
+            if (!string.IsNullOrWhiteSpace(value) && CurrentPageKey != "tweaks")
+            {
+                Navigate("tweaks");
+            }
+        }
+    }
+
     public bool IsUpdateDialogOpen
     {
         get => _isUpdateDialogOpen;

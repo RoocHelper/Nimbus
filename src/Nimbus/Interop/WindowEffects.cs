@@ -32,6 +32,35 @@ internal static class WindowEffects
     [DllImport("dwmapi.dll")]
     private static extern int DwmExtendFrameIntoClientArea(IntPtr hwnd, ref Margins margins);
 
+    [DllImport("user32.dll", EntryPoint = "GetWindowLongPtrW")]
+    private static extern IntPtr GetWindowLongPtr(IntPtr hwnd, int index);
+
+    [DllImport("user32.dll", EntryPoint = "SetWindowLongPtrW")]
+    private static extern IntPtr SetWindowLongPtr(IntPtr hwnd, int index, IntPtr value);
+
+    private const int GwlStyle = -16;
+    private const long WsSysMenu = 0x00080000;
+
+    /// <summary>
+    /// With the frame extended into the whole window, DWM still paints the native
+    /// minimize/maximize/close buttons behind ours ("ghost" buttons). Dropping WS_SYSMENU
+    /// stops that; Alt+F4 and the taskbar menu keep working.
+    /// </summary>
+    public static void HideNativeCaptionButtons(Window window)
+    {
+        var hwnd = new WindowInteropHelper(window).Handle;
+        if (hwnd == IntPtr.Zero)
+        {
+            return;
+        }
+
+        var style = GetWindowLongPtr(hwnd, GwlStyle).ToInt64();
+        if ((style & WsSysMenu) != 0)
+        {
+            SetWindowLongPtr(hwnd, GwlStyle, new IntPtr(style & ~WsSysMenu));
+        }
+    }
+
     /// <summary>Applies the backdrop. Returns true when a translucent backdrop is active.</summary>
     public static bool Apply(Window window, BackdropKind kind, bool supported)
     {

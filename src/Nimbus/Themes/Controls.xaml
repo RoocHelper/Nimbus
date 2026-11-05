@@ -16,8 +16,8 @@
     <!-- ===================== Text ===================== -->
     <Style x:Key="PageTitle" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="{StaticResource DisplayFont}" />
-        <Setter Property="FontSize" Value="26" />
-        <Setter Property="FontWeight" Value="SemiBold" />
+        <Setter Property="FontSize" Value="40" />
+        <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
     </Style>
 
@@ -84,10 +84,11 @@
     <Style TargetType="Button">
         <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
         <Setter Property="Background" Value="{StaticResource ControlFillBrush}" />
-        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Padding" Value="16,8" />
+        <Setter Property="Padding" Value="18,8" />
         <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
@@ -191,8 +192,8 @@
     </Style>
 
     <Style x:Key="CaptionButton" TargetType="Button">
-        <Setter Property="Width" Value="46" />
-        <Setter Property="Height" Value="38" />
+        <Setter Property="Width" Value="44" />
+        <Setter Property="Height" Value="40" />
         <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}" />
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -231,51 +232,25 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
-                    <Grid Height="42" Background="Transparent">
-                        <Border x:Name="bg" CornerRadius="8" Background="Transparent" />
-                        <Border x:Name="indicator" Width="3" Height="16" CornerRadius="2"
-                                HorizontalAlignment="Left" Background="{StaticResource AccentBrush}"
-                                Opacity="0" RenderTransformOrigin="0.5,0.5">
-                            <Border.RenderTransform>
-                                <ScaleTransform ScaleY="0.3" />
-                            </Border.RenderTransform>
-                        </Border>
-                        <StackPanel Orientation="Horizontal" Margin="16,0,12,0" VerticalAlignment="Center">
-                            <TextBlock x:Name="icon" Style="{StaticResource Icon}" Text="{TemplateBinding Tag}"
-                                       Foreground="{TemplateBinding Foreground}" Width="20" />
-                            <ContentPresenter x:Name="label" Margin="12,0,0,0" VerticalAlignment="Center"
-                                              TextElement.FontSize="13.5"
+                    <Border x:Name="bg" Height="44" CornerRadius="12" Background="Transparent">
+                        <StackPanel Orientation="Horizontal" Margin="14,0,12,0" VerticalAlignment="Center">
+                            <TextBlock x:Name="icon" Style="{StaticResource Icon}" Text="{TemplateBinding Tag}" FontSize="17"
+                                       Foreground="{TemplateBinding Foreground}" Width="22" />
+                            <ContentPresenter x:Name="label" Margin="14,0,0,0" VerticalAlignment="Center"
+                                              TextElement.FontSize="14.5" TextElement.FontWeight="SemiBold"
                                               TextElement.Foreground="{TemplateBinding Foreground}" />
                         </StackPanel>
-                    </Grid>
+                    </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="bg" Property="Background" Value="{StaticResource ControlFillBrush}" />
+                            <Setter TargetName="bg" Property="Background" Value="#0FFFFFFF" />
+                            <Setter TargetName="label" Property="TextElement.Foreground" Value="{StaticResource TextPrimaryBrush}" />
+                            <Setter TargetName="icon" Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
                         </Trigger>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="bg" Property="Background" Value="{StaticResource ControlFillBrush}" />
+                            <Setter TargetName="bg" Property="Background" Value="#1CFFFFFF" />
                             <Setter TargetName="icon" Property="Foreground" Value="{StaticResource AccentBrush}" />
-                            <Setter TargetName="label" Property="TextElement.Foreground" Value="{StaticResource TextPrimaryBrush}" />
-                            <Trigger.EnterActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="indicator" Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.18" />
-                                        <DoubleAnimation Storyboard.TargetName="indicator" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" To="1" Duration="0:0:0.22">
-                                            <DoubleAnimation.EasingFunction>
-                                                <CubicEase EasingMode="EaseOut" />
-                                            </DoubleAnimation.EasingFunction>
-                                        </DoubleAnimation>
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.EnterActions>
-                            <Trigger.ExitActions>
-                                <BeginStoryboard>
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="indicator" Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.12" />
-                                        <DoubleAnimation Storyboard.TargetName="indicator" Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)" To="0.3" Duration="0:0:0.12" />
-                                    </Storyboard>
-                                </BeginStoryboard>
-                            </Trigger.ExitActions>
+                            <Setter TargetName="label" Property="TextElement.Foreground" Value="White" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -285,18 +260,19 @@
 
     <!-- ===================== Chips / segmented ===================== -->
     <Style x:Key="Chip" TargetType="RadioButton">
-        <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}" />
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
         <Setter Property="Background" Value="{StaticResource ControlFillBrush}" />
-        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
-        <Setter Property="Padding" Value="14,6" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Padding" Value="16,7" />
         <Setter Property="Margin" Value="0,0,8,0" />
-        <Setter Property="FontSize" Value="12.5" />
+        <Setter Property="FontSize" Value="13" />
+        <Setter Property="FontWeight" Value="SemiBold" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
-                    <Border x:Name="root" CornerRadius="15" Padding="{TemplateBinding Padding}"
+                    <Border x:Name="root" CornerRadius="18" Padding="{TemplateBinding Padding}"
                             Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
                         <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
                                           TextElement.Foreground="{TemplateBinding Foreground}" />
@@ -307,13 +283,10 @@
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="{StaticResource ControlHoverBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
             </Trigger>
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Background" Value="{StaticResource AccentBrush}" />
-                <Setter Property="BorderBrush" Value="{StaticResource AccentBrush}" />
-                <Setter Property="Foreground" Value="{StaticResource OnAccentBrush}" />
-                <Setter Property="FontWeight" Value="SemiBold" />
+                <Setter Property="Background" Value="{StaticResource ChipSelectedBrush}" />
+                <Setter Property="Foreground" Value="{StaticResource OnChipSelectedBrush}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Opacity" Value="0.45" />
@@ -326,20 +299,11 @@
         <Setter Property="Margin" Value="0,0,8,0" />
         <Setter Property="FontSize" Value="12.5" />
         <Setter Property="Foreground" Value="{StaticResource TextSecondaryBrush}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border CornerRadius="15" Padding="{TemplateBinding Padding}"
-                            Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="1">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"
-                                          TextElement.Foreground="{TemplateBinding Foreground}" />
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{StaticResource ControlBorderBrush}" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{StaticResource ControlHoverBrush}" />
+                <Setter Property="Background" Value="{StaticResource ControlFillBrush}" />
                 <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
             </Trigger>
         </Style.Triggers>
@@ -484,19 +448,19 @@
         <Setter Property="CaretBrush" Value="{StaticResource TextPrimaryBrush}" />
         <Setter Property="SelectionBrush" Value="{StaticResource AccentBrush}" />
         <Setter Property="FontSize" Value="13" />
-        <Setter Property="Height" Value="34" />
+        <Setter Property="Height" Value="40" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
-                    <Border x:Name="root" CornerRadius="8" Background="{StaticResource ControlFillBrush}"
+                    <Border x:Name="root" CornerRadius="20" Background="{StaticResource ControlFillBrush}"
                             BorderBrush="{StaticResource ControlBorderBrush}" BorderThickness="1">
                         <Grid>
-                            <TextBlock Style="{StaticResource Icon}" Text="&#xE721;" FontSize="13" HorizontalAlignment="Left"
-                                       Margin="12,0,0,0" Foreground="{StaticResource TextMutedBrush}" />
-                            <TextBlock x:Name="placeholder" Text="{TemplateBinding Tag}" Margin="36,0,10,0" VerticalAlignment="Center"
+                            <TextBlock Style="{StaticResource Icon}" Text="&#xE721;" FontSize="14" HorizontalAlignment="Left"
+                                       Margin="16,0,0,0" Foreground="{StaticResource TextSecondaryBrush}" />
+                            <TextBlock x:Name="placeholder" Text="{TemplateBinding Tag}" Margin="44,0,12,0" VerticalAlignment="Center"
                                        Foreground="{StaticResource TextMutedBrush}" IsHitTestVisible="False" Visibility="Collapsed" />
-                            <ScrollViewer x:Name="PART_ContentHost" Margin="34,0,8,0" VerticalAlignment="Center" />
+                            <ScrollViewer x:Name="PART_ContentHost" Margin="42,0,12,0" VerticalAlignment="Center" />
                         </Grid>
                     </Border>
                     <ControlTemplate.Triggers>
@@ -597,24 +561,25 @@
                 <ControlTemplate TargetType="Control">
                     <Grid>
                         <Ellipse Stroke="{StaticResource ControlFillBrush}" StrokeThickness="2.5" />
-                        <Ellipse x:Name="arc" Stroke="{StaticResource AccentBrush}" StrokeThickness="2.5"
+                        <Ellipse Stroke="{StaticResource AccentBrush}" StrokeThickness="2.5"
                                  StrokeDashArray="8 100" StrokeDashCap="Round" RenderTransformOrigin="0.5,0.5">
                             <Ellipse.RenderTransform>
                                 <RotateTransform Angle="0" />
                             </Ellipse.RenderTransform>
+                            <!-- The animation lives on the element itself so it only starts once the
+                                 template exists (a hidden spinner has no template yet). -->
+                            <Ellipse.Triggers>
+                                <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+                                    <BeginStoryboard>
+                                        <Storyboard RepeatBehavior="Forever">
+                                            <DoubleAnimation Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
+                                                             From="0" To="360" Duration="0:0:0.9" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Ellipse.Triggers>
                         </Ellipse>
                     </Grid>
-                    <ControlTemplate.Triggers>
-                        <EventTrigger RoutedEvent="FrameworkElement.Loaded">
-                            <BeginStoryboard>
-                                <Storyboard RepeatBehavior="Forever">
-                                    <DoubleAnimation Storyboard.TargetName="arc"
-                                                     Storyboard.TargetProperty="(UIElement.RenderTransform).(RotateTransform.Angle)"
-                                                     From="0" To="360" Duration="0:0:0.9" />
-                                </Storyboard>
-                            </BeginStoryboard>
-                        </EventTrigger>
-                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

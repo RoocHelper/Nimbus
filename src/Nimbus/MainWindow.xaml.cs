@@ -13,8 +13,17 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        SourceInitialized += (_, _) => ApplyBackdrop();
-        StateChanged += (_, _) => UpdateMaximizedLayout();
+        SourceInitialized += (_, _) =>
+        {
+            WindowEffects.HideNativeCaptionButtons(this);
+            ApplyBackdrop();
+        };
+        StateChanged += (_, _) =>
+        {
+            UpdateMaximizedLayout();
+            WindowEffects.HideNativeCaptionButtons(this);
+        };
+        Activated += (_, _) => WindowEffects.HideNativeCaptionButtons(this);
         DataContextChanged += OnDataContextChanged;
     }
 
@@ -47,18 +56,19 @@ public partial class MainWindow : Window
         var resources = Application.Current.Resources;
         if (!translucent)
         {
-            resources["WindowFillBrush"] = new SolidColorBrush(Color.FromRgb(0x0D, 0x11, 0x17));
-            resources["SidebarFillBrush"] = new SolidColorBrush(Color.FromRgb(0x0A, 0x0D, 0x12));
+            resources["WindowFillBrush"] = new SolidColorBrush(Color.FromRgb(0x0B, 0x10, 0x15));
+            resources["SidebarFillBrush"] = new SolidColorBrush(Color.FromArgb(0x1F, 0x00, 0x00, 0x00));
         }
         else if (kind == BackdropKind.Mica)
         {
-            resources["WindowFillBrush"] = new SolidColorBrush(Color.FromArgb(0x66, 0x08, 0x0B, 0x10));
-            resources["SidebarFillBrush"] = new SolidColorBrush(Color.FromArgb(0x26, 0x00, 0x00, 0x00));
+            resources["WindowFillBrush"] = new SolidColorBrush(Color.FromArgb(0x4D, 0x07, 0x0B, 0x10));
+            resources["SidebarFillBrush"] = new SolidColorBrush(Color.FromArgb(0x14, 0x00, 0x00, 0x00));
         }
         else
         {
-            resources["WindowFillBrush"] = new SolidColorBrush(Color.FromArgb(0x8C, 0x08, 0x0B, 0x10));
-            resources["SidebarFillBrush"] = new SolidColorBrush(Color.FromArgb(0x33, 0x00, 0x00, 0x00));
+            // Acrylic: keep it see-through, the ambient glow and cards carry the contrast.
+            resources["WindowFillBrush"] = new SolidColorBrush(Color.FromArgb(0x66, 0x07, 0x0B, 0x10));
+            resources["SidebarFillBrush"] = new SolidColorBrush(Color.FromArgb(0x14, 0x00, 0x00, 0x00));
         }
     }
 

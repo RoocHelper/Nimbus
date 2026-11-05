@@ -13,7 +13,7 @@
         Icon="pack://application:,,,/Nimbus;component/Assets/nimbus.ico">
 
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="44"
+        <WindowChrome CaptionHeight="64"
                       ResizeBorderThickness="6"
                       GlassFrameThickness="-1"
                       CornerRadius="0"
@@ -38,90 +38,45 @@
         </DataTemplate>
 
         <Style x:Key="LangChip" TargetType="RadioButton" BasedOn="{StaticResource Chip}">
-            <Setter Property="Padding" Value="9,4" />
+            <Setter Property="Padding" Value="10,5" />
             <Setter Property="Margin" Value="0" />
+            <Setter Property="FontSize" Value="12" />
             <Setter Property="WindowChrome.IsHitTestVisibleInChrome" Value="True" />
         </Style>
     </Window.Resources>
 
     <Border x:Name="RootBorder" Background="{DynamicResource WindowFillBrush}">
         <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="44" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
+            <!-- Ambient glow over the translucent backdrop -->
+            <Rectangle Fill="{StaticResource AmbientGlowBrush}" IsHitTestVisible="False" />
+            <Rectangle Fill="{StaticResource AmbientGlow2Brush}" IsHitTestVisible="False" />
 
-            <!-- ===================== Title bar ===================== -->
-            <Grid Grid.Row="0">
-                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="16,0,0,0">
-                    <Image Source="pack://application:,,,/Nimbus;component/Assets/nimbus.png" Width="22" Height="22"
-                           RenderOptions.BitmapScalingMode="HighQuality" />
-                    <TextBlock Text="Nimbus" Margin="10,0,0,0" FontSize="14" FontWeight="SemiBold" VerticalAlignment="Center" />
-                    <Border Style="{StaticResource Badge}" Margin="10,0,0,0">
-                        <TextBlock Text="{Binding AppVersion}" FontSize="11" Foreground="{StaticResource TextSecondaryBrush}" />
-                    </Border>
-                </StackPanel>
-
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
-                    <Button x:Name="UpdateBadge"
-                            Command="{Binding OpenUpdateDialogCommand}"
-                            Visibility="{Binding AppUpdate.IsUpdateAvailable, Converter={StaticResource BoolVis}}"
-                            WindowChrome.IsHitTestVisibleInChrome="True"
-                            Margin="0,7,12,0" Padding="12,5"
-                            Background="{StaticResource AccentSubtleBrush}" BorderBrush="{StaticResource AccentBrush}">
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Style="{StaticResource Icon}" Text="&#xE896;" FontSize="13" Foreground="{StaticResource AccentBrush}" />
-                            <TextBlock Text="{Binding UpdateBadgeText}" Margin="8,0,0,0" FontSize="12.5" Foreground="{StaticResource AccentHoverBrush}" />
-                        </StackPanel>
-                    </Button>
-
-                    <Border Margin="0,7,12,0" Padding="3" CornerRadius="16" Background="{StaticResource ControlFillBrush}"
-                            BorderBrush="{StaticResource ControlBorderBrush}" BorderThickness="1"
-                            ToolTip="{DynamicResource S.Set.Language}">
-                        <StackPanel Orientation="Horizontal">
-                            <RadioButton Style="{StaticResource LangChip}" GroupName="lang"
-                                         IsChecked="{Binding SettingsPage.Language, Converter={StaticResource Eq}, ConverterParameter=id}">
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="{StaticResource FlagID}" Width="18" Height="12" />
-                                    <TextBlock Text="ID" Margin="6,0,0,0" FontSize="11.5" />
-                                </StackPanel>
-                            </RadioButton>
-                            <RadioButton Style="{StaticResource LangChip}" GroupName="lang"
-                                         IsChecked="{Binding SettingsPage.Language, Converter={StaticResource Eq}, ConverterParameter=en}">
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="{StaticResource FlagEN}" Width="18" Height="12" />
-                                    <TextBlock Text="EN" Margin="6,0,0,0" FontSize="11.5" />
-                                </StackPanel>
-                            </RadioButton>
-                        </StackPanel>
-                    </Border>
-
-                    <Button Style="{StaticResource CaptionButton}" Content="&#xE921;" Click="OnMinimize"
-                            WindowChrome.IsHitTestVisibleInChrome="True" />
-                    <Button x:Name="MaxButton" Style="{StaticResource CaptionButton}" Content="&#xE922;" Click="OnMaximize"
-                            WindowChrome.IsHitTestVisibleInChrome="True" />
-                    <Button Style="{StaticResource CloseCaptionButton}" Content="&#xE8BB;" Click="OnClose"
-                            WindowChrome.IsHitTestVisibleInChrome="True" />
-                </StackPanel>
-            </Grid>
-
-            <!-- ===================== Body ===================== -->
-            <Grid Grid.Row="1">
+            <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="216" />
+                    <ColumnDefinition Width="236" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <!-- Sidebar -->
-                <Border Grid.Column="0" Background="{DynamicResource SidebarFillBrush}" CornerRadius="0,12,0,0"
-                        BorderBrush="{StaticResource DividerBrush}" BorderThickness="0,1,1,0">
-                    <DockPanel Margin="12,14,12,14">
+                <!-- ===================== Sidebar ===================== -->
+                <Border Grid.Column="0" Background="{DynamicResource SidebarFillBrush}"
+                        BorderBrush="{StaticResource DividerBrush}" BorderThickness="0,0,1,0">
+                    <DockPanel Margin="14,0,14,16">
+                        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Height="64" Margin="8,0,0,6">
+                            <Image Source="pack://application:,,,/Nimbus;component/Assets/nimbus.png" Width="30" Height="30"
+                                   VerticalAlignment="Center" RenderOptions.BitmapScalingMode="HighQuality" />
+                            <TextBlock Text="Nimbus" Margin="11,0,0,0" FontFamily="{StaticResource DisplayFont}" FontSize="19"
+                                       FontWeight="Bold" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding AppVersion}" Margin="8,4,0,0" FontSize="11.5" FontWeight="SemiBold"
+                                       Foreground="{StaticResource TextMutedBrush}" VerticalAlignment="Center" />
+                        </StackPanel>
+
                         <StackPanel DockPanel.Dock="Bottom">
-                            <Border Height="1" Background="{StaticResource DividerBrush}" Margin="4,8,4,8" />
+                            <Border Height="1" Background="{StaticResource DividerBrush}" Margin="6,8,6,8" />
                             <RadioButton Style="{StaticResource NavButton}" Tag="&#xE713;" GroupName="nav"
                                          Content="{DynamicResource S.Nav.Settings}"
                                          IsChecked="{Binding CurrentPageKey, Converter={StaticResource Eq}, ConverterParameter=settings}" />
                         </StackPanel>
+
                         <StackPanel>
                             <RadioButton Style="{StaticResource NavButton}" Tag="&#xE80F;" GroupName="nav"
                                          Content="{DynamicResource S.Nav.Home}"
@@ -139,31 +94,86 @@
                     </DockPanel>
                 </Border>
 
-                <!-- Page host -->
-                <ContentControl x:Name="PageHost" Grid.Column="1" Content="{Binding CurrentPage}" Focusable="False"
-                                Margin="30,10,22,0" RenderTransformOrigin="0.5,0.5">
-                    <ContentControl.RenderTransform>
-                        <TranslateTransform />
-                    </ContentControl.RenderTransform>
-                </ContentControl>
+                <!-- ===================== Main column ===================== -->
+                <Grid Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="64" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
 
-                <!-- Toast -->
-                <Border Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,26"
-                        Padding="16,10" CornerRadius="10" Background="{StaticResource DialogBrush}"
-                        BorderBrush="{StaticResource CardBorderBrush}" BorderThickness="1"
-                        Visibility="{Binding Toast.IsVisible, Converter={StaticResource BoolVis}}">
-                    <StackPanel Orientation="Horizontal">
-                        <TextBlock Style="{StaticResource Icon}" FontSize="14" Text="&#xE73E;" Foreground="{StaticResource SuccessBrush}"
-                                   Visibility="{Binding Toast.IsError, Converter={StaticResource BoolVis}, ConverterParameter=Invert}" />
-                        <TextBlock Style="{StaticResource Icon}" FontSize="14" Text="&#xE7BA;" Foreground="{StaticResource WarningBrush}"
-                                   Visibility="{Binding Toast.IsError, Converter={StaticResource BoolVis}}" />
-                        <TextBlock Text="{Binding Toast.Message}" Margin="10,0,0,0" FontSize="13" />
+                    <!-- Top bar: search on the left, language + window buttons on the right -->
+                    <TextBox Grid.Row="0" Style="{StaticResource SearchBox}" Width="360" HorizontalAlignment="Left"
+                             VerticalAlignment="Center" Margin="32,4,0,0"
+                             Tag="{DynamicResource S.Tweaks.Search}"
+                             Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged, Delay=150}"
+                             WindowChrome.IsHitTestVisibleInChrome="True" />
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
+                        <Button Command="{Binding OpenUpdateDialogCommand}"
+                                Visibility="{Binding AppUpdate.IsUpdateAvailable, Converter={StaticResource BoolVis}}"
+                                WindowChrome.IsHitTestVisibleInChrome="True"
+                                Margin="0,14,10,0" Padding="14,6"
+                                Background="{StaticResource AccentSubtleBrush}">
+                            <StackPanel Orientation="Horizontal">
+                                <Ellipse Width="7" Height="7" Fill="{StaticResource AccentBrush}" VerticalAlignment="Center" />
+                                <TextBlock Text="{Binding UpdateBadgeText}" Margin="8,0,0,0" FontSize="12.5" Foreground="{StaticResource AccentHoverBrush}" />
+                            </StackPanel>
+                        </Button>
+
+                        <Border Margin="0,14,12,0" Padding="3" CornerRadius="18" Background="{StaticResource ControlFillBrush}"
+                                ToolTip="{DynamicResource S.Set.Language}">
+                            <StackPanel Orientation="Horizontal">
+                                <RadioButton Style="{StaticResource LangChip}" GroupName="lang"
+                                             IsChecked="{Binding SettingsPage.Language, Converter={StaticResource Eq}, ConverterParameter=id}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{StaticResource FlagID}" Width="18" Height="12" />
+                                        <TextBlock Text="ID" Margin="6,0,0,0" />
+                                    </StackPanel>
+                                </RadioButton>
+                                <RadioButton Style="{StaticResource LangChip}" GroupName="lang"
+                                             IsChecked="{Binding SettingsPage.Language, Converter={StaticResource Eq}, ConverterParameter=en}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{StaticResource FlagEN}" Width="18" Height="12" />
+                                        <TextBlock Text="EN" Margin="6,0,0,0" />
+                                    </StackPanel>
+                                </RadioButton>
+                            </StackPanel>
+                        </Border>
+
+                        <Button Style="{StaticResource CaptionButton}" Content="&#xE921;" Click="OnMinimize"
+                                WindowChrome.IsHitTestVisibleInChrome="True" />
+                        <Button x:Name="MaxButton" Style="{StaticResource CaptionButton}" Content="&#xE922;" Click="OnMaximize"
+                                WindowChrome.IsHitTestVisibleInChrome="True" />
+                        <Button Style="{StaticResource CloseCaptionButton}" Content="&#xE8BB;" Click="OnClose"
+                                WindowChrome.IsHitTestVisibleInChrome="True" />
                     </StackPanel>
-                </Border>
+
+                    <!-- Page host -->
+                    <ContentControl x:Name="PageHost" Grid.Row="1" Content="{Binding CurrentPage}" Focusable="False"
+                                    Margin="32,4,22,0" RenderTransformOrigin="0.5,0.5">
+                        <ContentControl.RenderTransform>
+                            <TranslateTransform />
+                        </ContentControl.RenderTransform>
+                    </ContentControl>
+
+                    <!-- Toast -->
+                    <Border Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,26"
+                            Padding="18,11" CornerRadius="20" Background="{StaticResource DialogBrush}"
+                            BorderBrush="{StaticResource CardBorderBrush}" BorderThickness="1"
+                            Visibility="{Binding Toast.IsVisible, Converter={StaticResource BoolVis}}">
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Style="{StaticResource Icon}" FontSize="14" Text="&#xE73E;" Foreground="{StaticResource SuccessBrush}"
+                                       Visibility="{Binding Toast.IsError, Converter={StaticResource BoolVis}, ConverterParameter=Invert}" />
+                            <TextBlock Style="{StaticResource Icon}" FontSize="14" Text="&#xE7BA;" Foreground="{StaticResource WarningBrush}"
+                                       Visibility="{Binding Toast.IsError, Converter={StaticResource BoolVis}}" />
+                            <TextBlock Text="{Binding Toast.Message}" Margin="10,0,0,0" FontSize="13" />
+                        </StackPanel>
+                    </Border>
+                </Grid>
             </Grid>
 
             <!-- ===================== Job overlay ===================== -->
-            <Grid Grid.RowSpan="2" Background="{StaticResource OverlayBrush}"
+            <Grid Background="{StaticResource OverlayBrush}"
                   Visibility="{Binding Job.IsOverlayVisible, Converter={StaticResource BoolVis}}">
                 <Border Width="560" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="26"
                         CornerRadius="16" Background="{StaticResource DialogBrush}"
@@ -221,7 +231,7 @@
             </Grid>
 
             <!-- ===================== Confirm dialog ===================== -->
-            <Grid Grid.RowSpan="2" Background="{StaticResource OverlayBrush}"
+            <Grid Background="{StaticResource OverlayBrush}"
                   Visibility="{Binding Dialog.IsOpen, Converter={StaticResource BoolVis}}">
                 <Border Width="500" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="26"
                         CornerRadius="16" Background="{StaticResource DialogBrush}"
@@ -264,7 +274,7 @@
             </Grid>
 
             <!-- ===================== App update dialog ===================== -->
-            <Grid Grid.RowSpan="2" Background="{StaticResource OverlayBrush}"
+            <Grid Background="{StaticResource OverlayBrush}"
                   Visibility="{Binding IsUpdateDialogOpen, Converter={StaticResource BoolVis}}">
                 <Border Width="480" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="26"
                         CornerRadius="16" Background="{StaticResource DialogBrush}"
